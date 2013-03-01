@@ -12,17 +12,9 @@
 		AEDF47D516E0EA5A00CA919E /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AEDF47D416E0EA5A00CA919E /* CoreGraphics.framework */; };
 		AEDF47DB16E0EA5A00CA919E /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = AEDF47D916E0EA5A00CA919E /* InfoPlist.strings */; };
 		AEDF47DD16E0EA5A00CA919E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = AEDF47DC16E0EA5A00CA919E /* main.m */; };
-		AEDF47E116E0EA5A00CA919E /* DRAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = AEDF47E016E0EA5A00CA919E /* DRAppDelegate.m */; };
-		AEDF47E316E0EA5A00CA919E /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = AEDF47E216E0EA5A00CA919E /* Default.png */; };
-		AEDF47E516E0EA5A00CA919E /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AEDF47E416E0EA5A00CA919E /* Default@2x.png */; };
-		AEDF47E716E0EA5A00CA919E /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AEDF47E616E0EA5A00CA919E /* Default-568h@2x.png */; };
 		AEDF47EA16E0EA5A00CA919E /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AEDF47E816E0EA5A00CA919E /* MainStoryboard.storyboard */; };
-		AEDF47ED16E0EA5A00CA919E /* DRFirstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AEDF47EC16E0EA5A00CA919E /* DRFirstViewController.m */; };
-		AEDF47EF16E0EA5A00CA919E /* first.png in Resources */ = {isa = PBXBuildFile; fileRef = AEDF47EE16E0EA5A00CA919E /* first.png */; };
-		AEDF47F116E0EA5A00CA919E /* first@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AEDF47F016E0EA5A00CA919E /* first@2x.png */; };
-		AEDF47F416E0EA5A00CA919E /* DRSecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AEDF47F316E0EA5A00CA919E /* DRSecondViewController.m */; };
-		AEDF47F616E0EA5A00CA919E /* second.png in Resources */ = {isa = PBXBuildFile; fileRef = AEDF47F516E0EA5A00CA919E /* second.png */; };
-		AEDF47F816E0EA5A00CA919E /* second@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AEDF47F716E0EA5A00CA919E /* second@2x.png */; };
+		AEDF481016E0EC3A00CA919E /* DRAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = AEDF480F16E0EC3A00CA919E /* DRAppDelegate.m */; };
+		AEDF481316E0EC7C00CA919E /* DRPreferences.m in Sources */ = {isa = PBXBuildFile; fileRef = AEDF481216E0EC7C00CA919E /* DRPreferences.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,20 +26,13 @@
 		AEDF47DA16E0EA5A00CA919E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		AEDF47DC16E0EA5A00CA919E /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		AEDF47DE16E0EA5A00CA919E /* Droplets-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Droplets-Prefix.pch"; sourceTree = "<group>"; };
-		AEDF47DF16E0EA5A00CA919E /* DRAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DRAppDelegate.h; sourceTree = "<group>"; };
-		AEDF47E016E0EA5A00CA919E /* DRAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DRAppDelegate.m; sourceTree = "<group>"; };
-		AEDF47E216E0EA5A00CA919E /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
-		AEDF47E416E0EA5A00CA919E /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
-		AEDF47E616E0EA5A00CA919E /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		AEDF47E916E0EA5A00CA919E /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
-		AEDF47EB16E0EA5A00CA919E /* DRFirstViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DRFirstViewController.h; sourceTree = "<group>"; };
-		AEDF47EC16E0EA5A00CA919E /* DRFirstViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DRFirstViewController.m; sourceTree = "<group>"; };
-		AEDF47EE16E0EA5A00CA919E /* first.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = first.png; sourceTree = "<group>"; };
-		AEDF47F016E0EA5A00CA919E /* first@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "first@2x.png"; sourceTree = "<group>"; };
-		AEDF47F216E0EA5A00CA919E /* DRSecondViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DRSecondViewController.h; sourceTree = "<group>"; };
-		AEDF47F316E0EA5A00CA919E /* DRSecondViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DRSecondViewController.m; sourceTree = "<group>"; };
-		AEDF47F516E0EA5A00CA919E /* second.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = second.png; sourceTree = "<group>"; };
-		AEDF47F716E0EA5A00CA919E /* second@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "second@2x.png"; sourceTree = "<group>"; };
+		AEDF480B16E0EC0000CA919E /* Macros.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Macros.h; sourceTree = "<group>"; };
+		AEDF480C16E0EC1000CA919E /* Constants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
+		AEDF480E16E0EC3A00CA919E /* DRAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DRAppDelegate.h; sourceTree = "<group>"; };
+		AEDF480F16E0EC3A00CA919E /* DRAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DRAppDelegate.m; sourceTree = "<group>"; };
+		AEDF481116E0EC7C00CA919E /* DRPreferences.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DRPreferences.h; sourceTree = "<group>"; };
+		AEDF481216E0EC7C00CA919E /* DRPreferences.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DRPreferences.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,17 +79,10 @@
 		AEDF47D616E0EA5A00CA919E /* Droplets */ = {
 			isa = PBXGroup;
 			children = (
-				AEDF47DF16E0EA5A00CA919E /* DRAppDelegate.h */,
-				AEDF47E016E0EA5A00CA919E /* DRAppDelegate.m */,
-				AEDF47E816E0EA5A00CA919E /* MainStoryboard.storyboard */,
-				AEDF47EB16E0EA5A00CA919E /* DRFirstViewController.h */,
-				AEDF47EC16E0EA5A00CA919E /* DRFirstViewController.m */,
-				AEDF47EE16E0EA5A00CA919E /* first.png */,
-				AEDF47F016E0EA5A00CA919E /* first@2x.png */,
-				AEDF47F216E0EA5A00CA919E /* DRSecondViewController.h */,
-				AEDF47F316E0EA5A00CA919E /* DRSecondViewController.m */,
-				AEDF47F516E0EA5A00CA919E /* second.png */,
-				AEDF47F716E0EA5A00CA919E /* second@2x.png */,
+				AEDF47FE16E0EB7400CA919E /* Bundle */,
+				AEDF480D16E0EC3A00CA919E /* Classes */,
+				AEDF480016E0EB9200CA919E /* Headers */,
+				AEDF480416E0EB9200CA919E /* Images */,
 				AEDF47D716E0EA5A00CA919E /* Supporting Files */,
 			);
 			path = Droplets;
@@ -117,11 +95,43 @@
 				AEDF47D916E0EA5A00CA919E /* InfoPlist.strings */,
 				AEDF47DC16E0EA5A00CA919E /* main.m */,
 				AEDF47DE16E0EA5A00CA919E /* Droplets-Prefix.pch */,
-				AEDF47E216E0EA5A00CA919E /* Default.png */,
-				AEDF47E416E0EA5A00CA919E /* Default@2x.png */,
-				AEDF47E616E0EA5A00CA919E /* Default-568h@2x.png */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		AEDF47FE16E0EB7400CA919E /* Bundle */ = {
+			isa = PBXGroup;
+			children = (
+				AEDF47E816E0EA5A00CA919E /* MainStoryboard.storyboard */,
+			);
+			name = Bundle;
+			sourceTree = "<group>";
+		};
+		AEDF480016E0EB9200CA919E /* Headers */ = {
+			isa = PBXGroup;
+			children = (
+				AEDF480B16E0EC0000CA919E /* Macros.h */,
+				AEDF480C16E0EC1000CA919E /* Constants.h */,
+			);
+			path = Headers;
+			sourceTree = "<group>";
+		};
+		AEDF480416E0EB9200CA919E /* Images */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Images;
+			sourceTree = "<group>";
+		};
+		AEDF480D16E0EC3A00CA919E /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				AEDF480E16E0EC3A00CA919E /* DRAppDelegate.h */,
+				AEDF480F16E0EC3A00CA919E /* DRAppDelegate.m */,
+				AEDF481116E0EC7C00CA919E /* DRPreferences.h */,
+				AEDF481216E0EC7C00CA919E /* DRPreferences.m */,
+			);
+			path = Classes;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -152,7 +162,7 @@
 			attributes = {
 				CLASSPREFIX = DR;
 				LastUpgradeCheck = 0460;
-				ORGANIZATIONNAME = "Zhuo Wu";
+				ORGANIZATIONNAME = zhuoapps.com;
 			};
 			buildConfigurationList = AEDF47C816E0EA5A00CA919E /* Build configuration list for PBXProject "Droplets" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -177,14 +187,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				AEDF47DB16E0EA5A00CA919E /* InfoPlist.strings in Resources */,
-				AEDF47E316E0EA5A00CA919E /* Default.png in Resources */,
-				AEDF47E516E0EA5A00CA919E /* Default@2x.png in Resources */,
-				AEDF47E716E0EA5A00CA919E /* Default-568h@2x.png in Resources */,
 				AEDF47EA16E0EA5A00CA919E /* MainStoryboard.storyboard in Resources */,
-				AEDF47EF16E0EA5A00CA919E /* first.png in Resources */,
-				AEDF47F116E0EA5A00CA919E /* first@2x.png in Resources */,
-				AEDF47F616E0EA5A00CA919E /* second.png in Resources */,
-				AEDF47F816E0EA5A00CA919E /* second@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -196,9 +199,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				AEDF47DD16E0EA5A00CA919E /* main.m in Sources */,
-				AEDF47E116E0EA5A00CA919E /* DRAppDelegate.m in Sources */,
-				AEDF47ED16E0EA5A00CA919E /* DRFirstViewController.m in Sources */,
-				AEDF47F416E0EA5A00CA919E /* DRSecondViewController.m in Sources */,
+				AEDF481016E0EC3A00CA919E /* DRAppDelegate.m in Sources */,
+				AEDF481316E0EC7C00CA919E /* DRPreferences.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -286,6 +288,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Droplets/Droplets-Prefix.pch";
 				INFOPLIST_FILE = "Droplets/Droplets-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -297,6 +300,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Droplets/Droplets-Prefix.pch";
 				INFOPLIST_FILE = "Droplets/Droplets-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -321,6 +325,7 @@
 				AEDF47FD16E0EA5A00CA919E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
