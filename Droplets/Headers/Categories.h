@@ -1,15 +1,14 @@
 //
-//  Constants.h
+//  Categories.h
 //  Droplets
 //
 //  Created by Zhuo Wu on 01/03/2013.
 //  Copyright (c) 2013 zhuoapps.com. All rights reserved.
 //
 
-#ifndef Droplets_Constants_h
-#define Droplets_Constants_h
+#ifndef Droplets_Categories_h
+#define Droplets_Categories_h
 
-#define Client_ID @""
-#define API_Key @""
+#import "NSString+Extend.h"
 
 #endif

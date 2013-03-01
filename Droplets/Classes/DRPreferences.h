@@ -8,6 +8,19 @@
 
 #import <Foundation/Foundation.h>
 
+/* operation on Library/Preferences/bundle_indentifier.plist
+ */
 @interface DRPreferences : NSObject
+
++ (BOOL)save;
+
++ (NSString *)bundleVersion;
++ (void)saveCurrentVersion;
+
++ (NSString *)clientID;
++ (void)setClientID:(NSString *)clientID;
+
++ (NSString *)APIKey;
++ (void)setAPIKey:(NSString *)APIKey;
 
 @end
