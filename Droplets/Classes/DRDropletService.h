@@ -17,9 +17,9 @@
                completion:(void(^)(NSDictionary *dict, NSError *error))completion;
 
 - (void)newDropletWithName:(NSString *)name
-                    sizeID:(int)sizeID
-                   imageID:(int)imageID
-                  regionID:(int)regionID;
+                    sizeID:(NSNumber *)sizeID
+                   imageID:(NSNumber *)imageID
+                  regionID:(NSNumber *)regionID;
 
 - (void)destroyDroplet:(NSNumber *)dropletID;
 

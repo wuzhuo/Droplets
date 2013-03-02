@@ -114,7 +114,7 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    if ([[segue identifier] isEqualToString:@"presentDropletDetailViewController"]) {
+    if ([[segue identifier] isEqualToString:@"pushDropletDetailViewController"]) {
         DRDropletDetailViewController *dropletDetailVC = [segue destinationViewController];
         dropletDetailVC.dropletDict = _dropletArray[self.tableView.indexPathForSelectedRow.row];
         

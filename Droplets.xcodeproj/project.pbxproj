@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AE05DE3E16E23E310075DF90 /* DRPickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AE05DE3D16E23E300075DF90 /* DRPickerViewController.m */; };
+		AE32E39616E181B500686384 /* DRLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AE32E39516E181B500686384 /* DRLoginViewController.m */; };
 		AE7C17B716E108B6007A30A3 /* DRDroplet.m in Sources */ = {isa = PBXBuildFile; fileRef = AE7C17B616E108B6007A30A3 /* DRDroplet.m */; };
 		AE7C17BA16E11127007A30A3 /* DRSizeService.m in Sources */ = {isa = PBXBuildFile; fileRef = AE7C17B916E11127007A30A3 /* DRSizeService.m */; };
 		AE7C17BD16E111CB007A30A3 /* DRRegionService.m in Sources */ = {isa = PBXBuildFile; fileRef = AE7C17BC16E111CB007A30A3 /* DRRegionService.m */; };
@@ -15,6 +17,9 @@
 		AE7C17C616E119EC007A30A3 /* DRSizeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = AE7C17C516E119EC007A30A3 /* DRSizeModel.m */; };
 		AE7C17CD16E135D1007A30A3 /* green_light.png in Resources */ = {isa = PBXBuildFile; fileRef = AE7C17CB16E135D1007A30A3 /* green_light.png */; };
 		AE7C17CE16E135D1007A30A3 /* red_light.png in Resources */ = {isa = PBXBuildFile; fileRef = AE7C17CC16E135D1007A30A3 /* red_light.png */; };
+		AE7C17D116E15BCC007A30A3 /* DRCreateDropletViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AE7C17D016E15BCC007A30A3 /* DRCreateDropletViewController.m */; };
+		AE7C17D416E15E55007A30A3 /* DROAuthViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AE7C17D316E15E55007A30A3 /* DROAuthViewController.m */; };
+		AE7C17DA16E15F25007A30A3 /* DRSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AE7C17D916E15F23007A30A3 /* DRSettingsViewController.m */; };
 		AEDF47D116E0EA5A00CA919E /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AEDF47D016E0EA5A00CA919E /* UIKit.framework */; };
 		AEDF47D316E0EA5A00CA919E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AEDF47D216E0EA5A00CA919E /* Foundation.framework */; };
 		AEDF47D516E0EA5A00CA919E /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AEDF47D416E0EA5A00CA919E /* CoreGraphics.framework */; };
@@ -36,6 +41,10 @@
 /* Begin PBXFileReference section */
 		2D77937147364B5E9C2BACF4 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = SOURCE_ROOT; };
 		8C70BB991A3C4E58871CB8C8 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		AE05DE3C16E23E300075DF90 /* DRPickerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DRPickerViewController.h; sourceTree = "<group>"; };
+		AE05DE3D16E23E300075DF90 /* DRPickerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DRPickerViewController.m; sourceTree = "<group>"; };
+		AE32E39416E181B400686384 /* DRLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DRLoginViewController.h; sourceTree = "<group>"; };
+		AE32E39516E181B500686384 /* DRLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DRLoginViewController.m; sourceTree = "<group>"; };
 		AE7C17B516E108B6007A30A3 /* DRDroplet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DRDroplet.h; sourceTree = "<group>"; };
 		AE7C17B616E108B6007A30A3 /* DRDroplet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DRDroplet.m; sourceTree = "<group>"; };
 		AE7C17B816E11127007A30A3 /* DRSizeService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DRSizeService.h; sourceTree = "<group>"; };
@@ -50,6 +59,12 @@
 		AE7C17C516E119EC007A30A3 /* DRSizeModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DRSizeModel.m; sourceTree = "<group>"; };
 		AE7C17CB16E135D1007A30A3 /* green_light.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = green_light.png; sourceTree = "<group>"; };
 		AE7C17CC16E135D1007A30A3 /* red_light.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = red_light.png; sourceTree = "<group>"; };
+		AE7C17CF16E15BCC007A30A3 /* DRCreateDropletViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DRCreateDropletViewController.h; sourceTree = "<group>"; };
+		AE7C17D016E15BCC007A30A3 /* DRCreateDropletViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DRCreateDropletViewController.m; sourceTree = "<group>"; };
+		AE7C17D216E15E54007A30A3 /* DROAuthViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DROAuthViewController.h; sourceTree = "<group>"; };
+		AE7C17D316E15E55007A30A3 /* DROAuthViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DROAuthViewController.m; sourceTree = "<group>"; };
+		AE7C17D816E15F22007A30A3 /* DRSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DRSettingsViewController.h; sourceTree = "<group>"; };
+		AE7C17D916E15F23007A30A3 /* DRSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DRSettingsViewController.m; sourceTree = "<group>"; };
 		AEDF47CD16E0EA5A00CA919E /* Droplets.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Droplets.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AEDF47D016E0EA5A00CA919E /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		AEDF47D216E0EA5A00CA919E /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -209,10 +224,20 @@
 		AEDF481416E0EEC800CA919E /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				AE7C17CF16E15BCC007A30A3 /* DRCreateDropletViewController.h */,
+				AE7C17D016E15BCC007A30A3 /* DRCreateDropletViewController.m */,
 				AEDF481B16E0F4BD00CA919E /* DRDropletDetailViewController.h */,
 				AEDF481C16E0F4BD00CA919E /* DRDropletDetailViewController.m */,
 				AEDF481816E0F49F00CA919E /* DRDropletListViewController.h */,
 				AEDF481916E0F49F00CA919E /* DRDropletListViewController.m */,
+				AE32E39416E181B400686384 /* DRLoginViewController.h */,
+				AE32E39516E181B500686384 /* DRLoginViewController.m */,
+				AE7C17D216E15E54007A30A3 /* DROAuthViewController.h */,
+				AE7C17D316E15E55007A30A3 /* DROAuthViewController.m */,
+				AE7C17D816E15F22007A30A3 /* DRSettingsViewController.h */,
+				AE7C17D916E15F23007A30A3 /* DRSettingsViewController.m */,
+				AE05DE3C16E23E300075DF90 /* DRPickerViewController.h */,
+				AE05DE3D16E23E300075DF90 /* DRPickerViewController.m */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -341,6 +366,11 @@
 				AE7C17C016E11654007A30A3 /* DRImageService.m in Sources */,
 				AE7C17C316E11917007A30A3 /* DRRegionModel.m in Sources */,
 				AE7C17C616E119EC007A30A3 /* DRSizeModel.m in Sources */,
+				AE7C17D116E15BCC007A30A3 /* DRCreateDropletViewController.m in Sources */,
+				AE7C17D416E15E55007A30A3 /* DROAuthViewController.m in Sources */,
+				AE7C17DA16E15F25007A30A3 /* DRSettingsViewController.m in Sources */,
+				AE32E39616E181B500686384 /* DRLoginViewController.m in Sources */,
+				AE05DE3E16E23E310075DF90 /* DRPickerViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
