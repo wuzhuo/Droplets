@@ -10,4 +10,7 @@
 
 @interface DRLoginViewController : UITableViewController
 
+@property (nonatomic, strong) IBOutlet UITextField *clientIDTextField;
+@property (nonatomic, strong) IBOutlet UITextField *apiKeyTextField;
+
 @end

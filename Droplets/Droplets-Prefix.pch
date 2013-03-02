@@ -15,4 +15,6 @@
     #import "Constants.h"
     #import "Macros.h"
     #import "DRPreferences.h"
+    #import "DRServiceManager.h"
+    #import "DRModelManager.h"
 #endif

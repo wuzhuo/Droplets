@@ -11,6 +11,7 @@
 #import "DRSizeService.h"
 #import "DRRegionService.h"
 #import "DRDropletDetailViewController.h"
+#import "DRLoginViewController.h"
 
 @interface DRDropletListViewController ()
 @property (nonatomic, strong) NSArray *dropletArray;
@@ -50,23 +51,17 @@
 {
     [super viewDidAppear:animated];
     
-    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
-    dispatch_group_t group = dispatch_group_create();
-    
-    dispatch_group_async(group, queue, ^{
-        [_sizeService requestAllSizes:nil];
-        [_regionService requestAllRegions:nil];
-    });
-    
-    dispatch_group_wait(group, DISPATCH_TIME_FOREVER);
-    
-    [_dropletService showAllActiveDroplets:^(NSArray *array, NSError *error) {
-        if (!error) {
-            self.dropletArray = array;
-            [self.tableView reloadData];
-        }
-    }];
-    dispatch_release(group);
+    if ([[DRServiceManager sharedInstance] validateUserAndDownloadEssentialData]) {
+        [_dropletService showAllActiveDroplets:^(NSArray *array, NSError *error) {
+            if (!error) {
+                self.dropletArray = array;
+                [self.tableView reloadData];
+            }
+        }];
+    } else {
+        UINavigationController *loginNC = [self.storyboard instantiateViewControllerWithIdentifier:@"DRLoginNavigationController"];
+        [self presentViewController:loginNC animated:YES completion:nil];
+    }
 }
 
 #pragma mark - Table view data source

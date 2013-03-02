@@ -9,7 +9,6 @@
 #ifndef Droplets_Constants_h
 #define Droplets_Constants_h
 
-#define Client_ID @""
-#define API_Key @""
+
 
 #endif

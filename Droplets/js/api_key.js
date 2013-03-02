@@ -1,0 +1,1 @@
+document.getElementsByClassName('api_key')[0].innerText.replace(/\r\n|\n/g,"").split(': ')[1]

@@ -14,7 +14,7 @@
 - (void)showAllActiveDroplets:(void(^)(NSArray *array, NSError *error))completion
 {
     [[DRAPIClient sharedInstance] getPath:@"droplets/"
-                               parameters:@{@"client_id": Client_ID, @"api_key": API_Key}
+                               parameters:@{@"client_id": [DRPreferences clientID], @"api_key": [DRPreferences APIKey]}
                                   success:^(AFHTTPRequestOperation *operation, id responseObject) {
                                       
                                       id jsonObject = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingAllowFragments error:nil];
@@ -32,7 +32,7 @@
                completion:(void(^)(NSDictionary *dict, NSError *error))completion
 {
     [[DRAPIClient sharedInstance] getPath:[@"droplets/" stringByAppendingString:dropletID]
-                               parameters:@{@"client_id": Client_ID, @"api_key": API_Key}
+                               parameters:@{@"client_id": [DRPreferences clientID], @"api_key": [DRPreferences APIKey]}
                                   success:^(AFHTTPRequestOperation *operation, id responseObject) {
                                       
                                       id jsonObject = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingAllowFragments error:nil];
@@ -55,7 +55,7 @@
                   regionID:(NSNumber *)regionID
 {
     [[DRAPIClient sharedInstance] getPath:@"droplets/new"
-                               parameters:@{@"name": name, @"size_id": sizeID, @"image_id": imageID, @"region_id": regionID, @"client_id": Client_ID, @"api_key": API_Key}
+                               parameters:@{@"name": name, @"size_id": sizeID, @"image_id": imageID, @"region_id": regionID, @"client_id": [DRPreferences clientID], @"api_key": [DRPreferences APIKey]}
                                   success:^(AFHTTPRequestOperation *operation, id responseObject) {
                                       
                                       id jsonObject = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingAllowFragments error:nil];
@@ -71,7 +71,7 @@
 {
     NSString *url = [NSString stringWithFormat:@"droplets/%@/destroy/", dropletID];
     [[DRAPIClient sharedInstance] getPath:url
-                               parameters:@{@"client_id": Client_ID, @"api_key": API_Key}
+                               parameters:@{@"client_id": [DRPreferences clientID], @"api_key": [DRPreferences APIKey]}
                                   success:^(AFHTTPRequestOperation *operation, id responseObject) {
                                       
                                       id jsonObject = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingAllowFragments error:nil];
@@ -86,7 +86,7 @@
 {
     NSString *url = [NSString stringWithFormat:@"droplets/%@/power_on/", dropletID];
     [[DRAPIClient sharedInstance] getPath:url
-                               parameters:@{@"client_id": Client_ID, @"api_key": API_Key}
+                               parameters:@{@"client_id": [DRPreferences clientID], @"api_key": [DRPreferences APIKey]}
                                   success:^(AFHTTPRequestOperation *operation, id responseObject) {
                                       
                                       id jsonObject = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingAllowFragments error:nil];
@@ -101,7 +101,7 @@
 {
     NSString *url = [NSString stringWithFormat:@"droplets/%@/shutdown/", dropletID];
     [[DRAPIClient sharedInstance] getPath:url
-                               parameters:@{@"client_id": Client_ID, @"api_key": API_Key}
+                               parameters:@{@"client_id": [DRPreferences clientID], @"api_key": [DRPreferences APIKey]}
                                   success:^(AFHTTPRequestOperation *operation, id responseObject) {
                                       
                                       id jsonObject = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingAllowFragments error:nil];
@@ -116,7 +116,7 @@
 {
     NSString *url = [NSString stringWithFormat:@"droplets/%@/reboot/", dropletID];
     [[DRAPIClient sharedInstance] getPath:url
-                               parameters:@{@"client_id": Client_ID, @"api_key": API_Key}
+                               parameters:@{@"client_id": [DRPreferences clientID], @"api_key": [DRPreferences APIKey]}
                                   success:^(AFHTTPRequestOperation *operation, id responseObject) {
                                       
                                       id jsonObject = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingAllowFragments error:nil];

@@ -83,21 +83,10 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (indexPath.section == 0) { // Account
-        if (indexPath.row == 2) { // login or logout
-            UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
-            if ([cell.textLabel.text isEqualToString:@"Login"]) {
-                UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"Input Client ID & API Key"
-                                                                         delegate:self
-                                                                cancelButtonTitle:@"Cancel"
-                                                           destructiveButtonTitle:nil
-                                                                otherButtonTitles:@"Copy from Web", @"Input by Hand", nil];
-                [actionSheet showInView:self.view];
-                
-            } else if ([cell.textLabel.text isEqualToString:@"logout"]) {
-                [DRPreferences setClientID:nil];
-                [DRPreferences setAPIKey:nil];
-                [DRPreferences save];
-            }
+        if (indexPath.row == 2) { // logout
+            [DRPreferences setClientID:nil];
+            [DRPreferences setAPIKey:nil];
+            [DRPreferences save];
         }
         
     }

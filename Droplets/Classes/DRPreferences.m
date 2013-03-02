@@ -54,4 +54,11 @@
     [userDefaults setValue:APIKey forKey:@"APIKey"];
 }
 
++ (void)resetLoginKey
+{
+    [self setClientID:nil];
+    [self setAPIKey:nil];
+    [self save];
+}
+
 @end

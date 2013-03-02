@@ -23,4 +23,6 @@
 + (NSString *)APIKey;
 + (void)setAPIKey:(NSString *)APIKey;
 
++ (void)resetLoginKey;
+
 @end

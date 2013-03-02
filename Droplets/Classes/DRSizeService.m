@@ -13,13 +13,23 @@
 
 - (void)requestAllSizes:(void(^)(NSArray *array, NSError *error))completion
 {
+    if (![DRPreferences clientID] || ![DRPreferences APIKey]) {
+        return;
+    }
     [[DRAPIClient sharedInstance] getPath:@"sizes/"
-                               parameters:@{@"client_id": Client_ID, @"api_key": API_Key}
+                               parameters:@{@"client_id": [DRPreferences clientID], @"api_key": [DRPreferences APIKey]}
                                   success:^(AFHTTPRequestOperation *operation, id responseObject) {
                                       
                                       id jsonObject = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingAllowFragments error:nil];
+                                      NSLog(@"%@", jsonObject);
                                       NSArray *result = jsonObject[@"sizes"];
-                                      [[DRSizeModel sharedInstance] processSizeData:result];
+                                      
+                                      if (result) {
+                                          [[DRModelManager sharedInstance] processSizeData:result];
+                                      } else {
+                                          [DRPreferences resetLoginKey];
+                                      }
+                                      
                                       if (completion) completion(result, nil);
                                   }
                                   failure:^(AFHTTPRequestOperation *operation, NSError *error) {

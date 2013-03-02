@@ -13,14 +13,24 @@
 
 - (void)requestAllRegions:(void(^)(NSArray *array, NSError *error))completion
 {
+    if (![DRPreferences clientID] || ![DRPreferences APIKey]) {
+        return;
+    }
+    
     [[DRAPIClient sharedInstance] getPath:@"regions/"
-                               parameters:@{@"client_id": Client_ID, @"api_key": API_Key}
+                               parameters:@{@"client_id": [DRPreferences clientID], @"api_key": [DRPreferences APIKey]}
                                   success:^(AFHTTPRequestOperation *operation, id responseObject) {
                                       
                                       id jsonObject = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingAllowFragments error:nil];
-                                      NSArray *result = jsonObject[@"regions"];
-                                      [[DRRegionModel sharedInstance] processRegionData:result];
                                       NSLog(@"%@", jsonObject);
+                                      NSArray *result = jsonObject[@"regions"];
+                                      
+                                      if (result) {
+                                          [[DRModelManager sharedInstance] processRegionData:result];
+                                      } else {
+                                          [DRPreferences resetLoginKey];
+                                      }
+                                      
                                       if (completion) completion(result, nil);
      
                                   }

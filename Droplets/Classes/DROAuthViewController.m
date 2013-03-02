@@ -43,4 +43,37 @@
     return YES;
 }
 
+- (IBAction)copyButtonPressed:(id)sender
+{
+    if ([self parseHTML]) {
+        [self.navigationController dismissViewControllerAnimated:YES completion:^{
+            
+        }];
+    }
+}
+
+- (BOOL)parseHTML
+{
+    NSString *clientJS = [NSString stringWithContentsOfURL:[[NSBundle mainBundle] URLForResource:@"js/client_id" withExtension:@"js"]
+                                                  encoding:NSUTF8StringEncoding
+                                                     error:nil];
+    NSString *clientID = [self.webView stringByEvaluatingJavaScriptFromString:clientJS];
+    
+    NSString *keyJS = [NSString stringWithContentsOfURL:[[NSBundle mainBundle] URLForResource:@"js/api_key" withExtension:@"js"]
+                                               encoding:NSUTF8StringEncoding
+                                                  error:nil];
+    NSString *apiKey = [self.webView stringByEvaluatingJavaScriptFromString:keyJS];
+    
+    NSLog(@"clientID: %@", clientID);
+    NSLog(@"apiKey: %@", apiKey);
+    
+    if (clientID && apiKey) {
+        [DRPreferences setClientID:clientID];
+        [DRPreferences setAPIKey:apiKey];
+        [DRPreferences save];
+        return YES;
+    }
+    return NO;
+}
+
 @end
