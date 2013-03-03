@@ -40,6 +40,7 @@
 		AEDF482916E0FFC200CA919E /* NSString+Extend.m in Sources */ = {isa = PBXBuildFile; fileRef = AEDF482816E0FFC200CA919E /* NSString+Extend.m */; };
 		AEDF483616E1054400CA919E /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AEDF482E16E102A200CA919E /* SystemConfiguration.framework */; };
 		AEDF483716E1054B00CA919E /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AEDF483016E102B000CA919E /* MobileCoreServices.framework */; };
+		AEF5B3DD16E3F724005AD706 /* DRSelectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AEF5B3DC16E3F723005AD706 /* DRSelectionViewController.m */; };
 		F25382BE25544243A74A8DD4 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C70BB991A3C4E58871CB8C8 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -107,6 +108,8 @@
 		AEDF482A16E1004900CA919E /* Categories.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Categories.h; sourceTree = "<group>"; };
 		AEDF482E16E102A200CA919E /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		AEDF483016E102B000CA919E /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		AEF5B3DB16E3F723005AD706 /* DRSelectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DRSelectionViewController.h; sourceTree = "<group>"; };
+		AEF5B3DC16E3F723005AD706 /* DRSelectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DRSelectionViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -263,6 +266,8 @@
 				AE32E39516E181B500686384 /* DRLoginViewController.m */,
 				AE7C17D216E15E54007A30A3 /* DROAuthViewController.h */,
 				AE7C17D316E15E55007A30A3 /* DROAuthViewController.m */,
+				AEF5B3DB16E3F723005AD706 /* DRSelectionViewController.h */,
+				AEF5B3DC16E3F723005AD706 /* DRSelectionViewController.m */,
 				AE7C17D816E15F22007A30A3 /* DRSettingsViewController.h */,
 				AE7C17D916E15F23007A30A3 /* DRSettingsViewController.m */,
 			);
@@ -407,6 +412,7 @@
 				AE1A82E916E2A6B30018FF2F /* DRCustomPickerView.m in Sources */,
 				AE1A82EE16E2ACCF0018FF2F /* UIView+Frame.m in Sources */,
 				AE1A82F116E2AEEF0018FF2F /* DRCustomPickerViewDataSouce.m in Sources */,
+				AEF5B3DD16E3F724005AD706 /* DRSelectionViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

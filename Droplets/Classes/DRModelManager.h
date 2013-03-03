@@ -9,20 +9,28 @@
 
 @interface DRModelManager : NSObject
 
-/* Key => name, Value => size_id
+/* Key => size_id, Value => name
  */
 @property (nonatomic, strong, readonly) NSMutableDictionary *sizeDict;
+
+/* Key => name, Value => size_id
+ */
+@property (nonatomic, strong, readonly) NSMutableDictionary *reversedSizeDict;
 
 /* Key => image_id, Value => name
  */
 @property (nonatomic, strong, readonly) NSMutableDictionary *imageDict;
 
+/* Key => name, Value => size_id
+ */
+@property (nonatomic, strong, readonly) NSMutableDictionary *reversedImageDict;
+
 /* Key => region_id, Value => name
  */
 @property (nonatomic, strong, readonly) NSMutableDictionary *regionDict;
 
-@property (nonatomic, strong, readonly) NSArray *sortedSizeDictKeys;
-@property (nonatomic, strong, readonly) NSArray *sortedImageDictKeys;
+@property (nonatomic, strong, readonly) NSArray *sortedReversedSizeDictKeys;
+@property (nonatomic, strong, readonly) NSArray *sortedReversedImageDictKeys;
 @property (nonatomic, strong, readonly) NSArray *sortedRegionDictKeys;
 
 + (DRModelManager *)sharedInstance;

@@ -25,25 +25,60 @@
                       success:(void(^)(NSDictionary *dict))success
                       failure:(void(^)(NSString *message))failure;
 
-- (void)destroyDroplet:(NSNumber *)dropletID;
+- (void)rebootDroplet:(NSNumber *)dropletID
+              success:(void(^)())success
+              failure:(void(^)(NSString *message))failure;
 
-- (void)powerOnWithID:(NSNumber *)dropletID;
-- (void)shutDownDropletWithID:(NSNumber *)dropletID;
-- (void)rebootDropletWithID:(NSNumber *)dropletID;
+- (void)powerCycleDroplet:(NSNumber *)dropletID
+                  success:(void(^)())success
+                  failure:(void(^)(NSString *message))failure;
 
-- (void)resetRootPasswordWithID:(int)dropletID;
-- (void)resizeDropletWithID:(int)dropletID
-                     sizeID:(int)sizeID;
-- (void)takeASnapshot;
-- (void)restoreDroplet;
-- (void)rebuildDroplet;
-- (void)enableAutomaticBackups;
-- (void)disableAutomaticBackups;
+- (void)shutDownDroplet:(NSNumber *)dropletID
+                success:(void(^)())success
+                failure:(void(^)(NSString *message))failure;
 
+- (void)powerOffDroplet:(NSNumber *)dropletID
+                success:(void(^)())success
+                failure:(void(^)(NSString *message))failure;
 
-#pragma mark - Not use in current version
+- (void)powerOnDroplet:(NSNumber *)dropletID
+               success:(void(^)())success
+               failure:(void(^)(NSString *message))failure;
 
-- (void)powerOffWithID:(int)dropletID;
-- (void)powerCycleDropletWithID:(int)dropletID;
+- (void)resetRootPasswordDroplet:(NSNumber *)dropletID
+                         success:(void(^)())success
+                         failure:(void(^)(NSString *message))failure;
+
+- (void)resizeDroplet:(NSNumber *)dropletID
+               sizeID:(NSNumber *)sizeID
+              success:(void(^)())success
+              failure:(void(^)(NSString *message))failure;
+
+- (void)takeASnapshotDroplet:(NSNumber *)dropletID
+                        name:(NSString *)name
+                     success:(void(^)())success
+                     failure:(void(^)(NSString *message))failure;
+
+- (void)restoreDroplet:(NSNumber *)dropletID
+               imageID:(NSNumber *)imageID
+               success:(void(^)())success
+               failure:(void(^)(NSString *message))failure;
+
+- (void)rebuildDroplet:(NSNumber *)dropletID
+               imageID:(NSNumber *)imageID
+               success:(void(^)())success
+               failure:(void(^)(NSString *message))failure;
+
+- (void)enableAutomaticBackups:(NSNumber *)dropletID
+                       success:(void(^)())success
+                       failure:(void(^)(NSString *message))failure;
+
+- (void)disableAutomaticBackups:(NSNumber *)dropletID
+                        success:(void(^)())success
+                        failure:(void(^)(NSString *message))failure;
+
+- (void)destroyDroplet:(NSNumber *)dropletID
+               success:(void(^)())success
+               failure:(void(^)(NSString *message))failure;
 
 @end

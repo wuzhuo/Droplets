@@ -58,8 +58,8 @@
     if (!_dropletDict) {
         _dropletDict = [[NSMutableDictionary alloc] initWithCapacity:4];
         _dropletDict[@"name"] = @"";
-        _dropletDict[@"size"] = [DRModelManager sharedInstance].sortedSizeDictKeys[0];
-        _dropletDict[@"image_id"] = [DRModelManager sharedInstance].sortedImageDictKeys[0];
+        _dropletDict[@"size"] = [DRModelManager sharedInstance].sortedReversedSizeDictKeys[0];
+        _dropletDict[@"image"] = [DRModelManager sharedInstance].sortedReversedImageDictKeys[0];
         _dropletDict[@"region_id"] = [DRModelManager sharedInstance].sortedRegionDictKeys[0];
     }
     return _dropletDict;
@@ -76,8 +76,7 @@
 {
     self.nameLabel.text = self.dropletDict[@"name"];
     self.sizeLabel.text = self.dropletDict[@"size"];
-    NSDictionary *imageDict = [DRModelManager sharedInstance].imageDict;
-    self.imageLabel.text = imageDict[self.dropletDict[@"image_id"]];
+    self.imageLabel.text = self.dropletDict[@"image"];;
     NSDictionary *regionDict = [DRModelManager sharedInstance].regionDict;
     self.regionLabel.text = regionDict[self.dropletDict[@"region_id"]];
     [self.tableView reloadData];
@@ -103,9 +102,12 @@
         return;
     }
     
+    NSNumber *sizeID = [DRModelManager sharedInstance].reversedSizeDict[_dropletDict[@"size"]];
+    NSNumber *imageID = [DRModelManager sharedInstance].reversedImageDict[_dropletDict[@"image"]];
+
     [[DRDropletService sharedInstance] createDropletWithName:_dropletDict[@"name"]
-                                                      sizeID:[DRModelManager sharedInstance].sizeDict[_dropletDict[@"size"]]
-                                                     imageID:_dropletDict[@"image_id"]
+                                                      sizeID:sizeID
+                                                     imageID:imageID
                                                     regionID:_dropletDict[@"region_id"]
                                                      success:^(NSDictionary *dict) {
                                                          [self dismissViewControllerAnimated:YES completion:nil];
@@ -156,11 +158,9 @@
 - (NSString *)pickerView:(DRCustomPickerView *)pickerView titleForRow:(NSInteger)row
 {
     if (pickerView.tag == Size_Picker_View_Tag) {
-        return [DRModelManager sharedInstance].sortedSizeDictKeys[row];
+        return [DRModelManager sharedInstance].sortedReversedSizeDictKeys[row];
     } else if (pickerView.tag == Image_Picker_View_Tag) {
-        NSDictionary *dict = [DRModelManager sharedInstance].imageDict;
-        id key = [DRModelManager sharedInstance].sortedImageDictKeys[row];
-        return dict[key];
+        return [DRModelManager sharedInstance].sortedReversedImageDictKeys[row];
     } else if (pickerView.tag == Region_Picker_View_Tag) {
         NSDictionary *dict = [DRModelManager sharedInstance].regionDict;
         id key = [DRModelManager sharedInstance].sortedRegionDictKeys[row];
@@ -174,9 +174,9 @@
 - (void)pickerView:(DRCustomPickerView *)pickerView didSelectRow:(NSInteger)row
 {
     if (pickerView.tag == Size_Picker_View_Tag) {
-        self.dropletDict[@"size"] = [DRModelManager sharedInstance].sortedSizeDictKeys[row];
+        self.dropletDict[@"size"] = [DRModelManager sharedInstance].sortedReversedSizeDictKeys[row];
     } else if (pickerView.tag == Image_Picker_View_Tag) {
-        self.dropletDict[@"image_id"] = [DRModelManager sharedInstance].sortedImageDictKeys[row];
+        self.dropletDict[@"image"] = [DRModelManager sharedInstance].sortedReversedImageDictKeys[row];
     } else if (pickerView.tag == Region_Picker_View_Tag) {
         self.dropletDict[@"region_id"] = [DRModelManager sharedInstance].sortedRegionDictKeys[row];
     }

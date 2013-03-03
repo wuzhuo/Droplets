@@ -9,20 +9,27 @@
 #import "DRDropletDetailViewController.h"
 #import "DRDropletService.h"
 #import "DRRegionModel.h"
+#import "DRSelectionViewController.h"
 
 @interface DRDropletDetailViewController ()
 @property (nonatomic, strong) DRDropletService *dropletService;
 @end
 
 @implementation DRDropletDetailViewController
+{
+    NSArray *_operationArray;
+    NSIndexPath *_selectedAccessoryButtonIndexPath;
+}
+
+- (void)awakeFromNib
+{
+    _operationArray = @[];
+}
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
-    self.ipAddressLabel.text = _dropletDict[@"ip_address"];
-    NSNumber *regionID = _dropletDict[@"region_id"];
-    self.regionLabel.text = [DRRegionModel sharedInstance].regionDict[regionID];
 }
 
 - (void)didReceiveMemoryWarning
@@ -34,35 +41,37 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     self.title = _dropletDict[@"name"];
+    [self reloadData];
 }
 
 #pragma mark - Accessors
 
 - (DRDropletService *)dropletService
 {
-    if (_dropletService) {
-        return _dropletService;
+    if (!_dropletService) {
+        _dropletService = [[DRDropletService alloc] init];
     }
-    
-    _dropletService = [[DRDropletService alloc] init];
     return _dropletService;
 }
 
-#pragma mark - Actions
-
-- (IBAction)bootButtonPressed:(id)sender
+- (void)reloadData
 {
-    [self.dropletService powerOnWithID:_dropletDict[@"id"]];
+    if ([_dropletDict[@"status"] isEqualToString:@"active"]) { // when the server is active
+        _operationArray = @[@"Reboot", @"Shutdown", @"Reset Root Password", @"Destroy"];
+    } else if ([_dropletDict[@"status"] isEqualToString:@"off"]) {
+        _operationArray = @[@"Boot", @"Reset Root Password", @"Resize", @"Take a Snapshot", @"Rebuild", @"Destroy"];
+    }
+    [self.tableView reloadData];
 }
 
-- (IBAction)shutdownButtonPressed:(id)sender
+- (void)alertErrorMessage:(NSString *)message
 {
-    [self.dropletService shutDownDropletWithID:_dropletDict[@"id"]];
-}
-
-- (IBAction)rebootButtonPressed:(id)sender
-{
-    [self.dropletService rebootDropletWithID:_dropletDict[@"id"]];
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Error"
+                                                        message:message
+                                                       delegate:nil
+                                              cancelButtonTitle:@"OK"
+                                              otherButtonTitles:nil];
+    [alertView show];
 }
 
 #pragma mark - UITableViewDataSource
@@ -74,33 +83,47 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    if (section == 0) {
-        return 3;
+    if (section == 0) { // basic info
+        return 4;
+    } else { // operation
+        return _operationArray.count;
     }
-    return 5;
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
     if (section == 0) {
-        return @"aaa";
+        return _dropletDict[@"name"];
     }
-    return @"aaa";
+    return @"Operaion";
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"OperationLisCell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+    static NSString *DetailCellIdentifier = @"DetailListCell";
+    static NSString *OperationCellIdentifier = @"OperationListCell";
+    UITableViewCell *cell;
     
     if (indexPath.section == 0) {
+        cell = [tableView dequeueReusableCellWithIdentifier:DetailCellIdentifier forIndexPath:indexPath];
+
         if (indexPath.row == 0) { //
-            
+            cell.textLabel.text = @"IP";
+            cell.detailTextLabel.text = _dropletDict[@"ip_address"];
+        } else if (indexPath.row == 1) {
+            cell.textLabel.text = @"Size";
+            cell.detailTextLabel.text = [DRModelManager sharedInstance].sizeDict[_dropletDict[@"size_id"]];
+        } else if (indexPath.row == 2) {
+            cell.textLabel.text = @"Image";
+            cell.detailTextLabel.text = [DRModelManager sharedInstance].imageDict[_dropletDict[@"image_id"]];
+        } else if (indexPath.row == 3) {
+            cell.textLabel.text = @"Region";
+            cell.detailTextLabel.text = [DRModelManager sharedInstance].regionDict[_dropletDict[@"region_id"]];
         }
-    }
-    
-    cell.textLabel.text = @"aaa";
-    
+    } else {
+        cell = [tableView dequeueReusableCellWithIdentifier:OperationCellIdentifier forIndexPath:indexPath];
+        cell.textLabel.text = _operationArray[indexPath.row];
+    }    
     return cell;
 }
 
@@ -108,13 +131,84 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    // Navigation logic may go here. Create and push another view controller.
-    /*
-     <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
-     // ...
-     // Pass the selected object to the new view controller.
-     [self.navigationController pushViewController:detailViewController animated:YES];
-     */
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+    NSString *operation = cell.textLabel.text;
+    
+    if ([operation isEqualToString:@"Reboot"]) {
+        [[DRDropletService sharedInstance] rebootDroplet:_dropletDict[@"id"] success:^{
+            
+        } failure:^(NSString *message) {
+            [self alertErrorMessage:message];
+        }];
+    }
+    else if ([operation isEqualToString:@"Power Cycle"]) {
+        [[DRDropletService sharedInstance] powerCycleDroplet:_dropletDict[@"id"] success:^{
+            
+        } failure:^(NSString *message) {
+            [self alertErrorMessage:message];
+        }];
+    }
+    else if ([operation isEqualToString:@"Shutdown"]) {
+        [[DRDropletService sharedInstance] shutDownDroplet:_dropletDict[@"id"] success:^{
+            
+        } failure:^(NSString *message) {
+            [self alertErrorMessage:message];
+        }];
+    }
+    else if ([operation isEqualToString:@"Power Off"]) {
+        [[DRDropletService sharedInstance] powerOffDroplet:_dropletDict[@"id"] success:^{
+            
+        } failure:^(NSString *message) {
+            [self alertErrorMessage:message];
+        }];
+    }
+    else if ([operation isEqualToString:@"Boost"]) {
+        [[DRDropletService sharedInstance] powerOnDroplet:_dropletDict[@"id"] success:^{
+            
+        } failure:^(NSString *message) {
+            [self alertErrorMessage:message];
+        }];
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    else if ([operation isEqualToString:@"Reset Root Password"]) {
+        [[DRDropletService sharedInstance] resetRootPasswordDroplet:_dropletDict[@"id"] success:^{
+            
+        } failure:^(NSString *message) {
+            [self alertErrorMessage:message];
+        }];
+    }
+    else if ([operation isEqualToString:@"Resize"]) {
+        DRSelectionViewController *selectionVC = [self.storyboard instantiateViewControllerWithIdentifier:@"DRSelectionViewController"];
+            selectionVC.selectionArray = [DRModelManager sharedInstance].sortedReversedSizeDictKeys;
+            selectionVC.selectedString = [DRModelManager sharedInstance].sizeDict[_dropletDict[@"size_id"]];
+            selectionVC.title = @"Size";
+        [self.navigationController pushViewController:selectionVC animated:YES];
+    }
+    
+    
+    
+    else if ([operation isEqualToString:@"Rebuild"]) {
+        DRSelectionViewController *selectionVC = [self.storyboard instantiateViewControllerWithIdentifier:@"DRSelectionViewController"];
+        selectionVC.selectionArray = [DRModelManager sharedInstance].sortedReversedImageDictKeys;
+        selectionVC.selectedString = [DRModelManager sharedInstance].imageDict[_dropletDict[@"image_id"]];
+        selectionVC.title = @"Image";
+        [self.navigationController pushViewController:selectionVC animated:YES];
+    }
+    else if ([operation isEqualToString:@"Destroy"]) {
+        [[DRDropletService sharedInstance] destroyDroplet:_dropletDict[@"id"] success:^{
+            
+        } failure:^(NSString *message) {
+            [self alertErrorMessage:message];
+        }];
+    }
 }
 
 @end

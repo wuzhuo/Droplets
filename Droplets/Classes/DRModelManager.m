@@ -24,33 +24,39 @@
 
 - (void)processSizeData:(NSArray *)sizeArray
 {
-    if (_sizeDict) {
+    if (_sizeDict || _reversedSizeDict) {
         [_sizeDict removeAllObjects];
+        [_reversedSizeDict removeAllObjects];
     } else {
         _sizeDict = [[NSMutableDictionary alloc] init];
+        _reversedSizeDict = [[NSMutableDictionary alloc] init];
     }
     
     for (NSDictionary *dict in sizeArray) {
-        _sizeDict[dict[@"name"]] = dict[@"id"];
+        _sizeDict[dict[@"id"]] = dict[@"name"];
+        _reversedSizeDict[dict[@"name"]] = dict[@"id"];
     }
-    _sortedSizeDictKeys = [_sizeDict.allKeys sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
+    _sortedReversedSizeDictKeys = [_reversedSizeDict.allKeys sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
         return [(NSString *)obj1 sizeInMB] - [(NSString *)obj2 sizeInMB];
     }];
 }
 
 - (void)processImageData:(NSArray *)imageArray
 {
-    if (_imageDict) {
+    if (_imageDict || _reversedImageDict) {
         [_imageDict removeAllObjects];
+        [_reversedImageDict removeAllObjects];
     } else {
         _imageDict = [[NSMutableDictionary alloc] init];
+        _reversedImageDict = [[NSMutableDictionary alloc] init];
     }
     
     for (NSDictionary *dict in imageArray) {
         _imageDict[dict[@"id"]] = dict[@"name"];
+        _reversedImageDict[dict[@"name"]] = dict[@"id"];
     }
-    _sortedImageDictKeys = [_imageDict.allKeys sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
-        return [obj1 intValue] - [obj2 intValue];
+    _sortedReversedImageDictKeys = [_reversedImageDict.allKeys sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
+        return [(NSString *)obj1 compare:(NSString *)obj2];
     }];
 }
 
