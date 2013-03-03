@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface DRLoginViewController : UITableViewController
+@interface DRLoginViewController : UITableViewController<UITextFieldDelegate>
 
 @property (nonatomic, strong) IBOutlet UITextField *clientIDTextField;
 @property (nonatomic, strong) IBOutlet UITextField *apiKeyTextField;

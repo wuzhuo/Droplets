@@ -106,8 +106,13 @@
     [[DRDropletService sharedInstance] createDropletWithName:_dropletDict[@"name"]
                                                       sizeID:[DRModelManager sharedInstance].sizeDict[_dropletDict[@"size"]]
                                                      imageID:_dropletDict[@"image_id"]
-                                                    regionID:_dropletDict[@"region_id"]];
-    [self dismissViewControllerAnimated:YES completion:nil];
+                                                    regionID:_dropletDict[@"region_id"]
+                                                     success:^(NSDictionary *dict) {
+                                                         [self dismissViewControllerAnimated:YES completion:nil];
+                                                     } failure:^(NSString *message) {
+                                                         UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Failure" message:message delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+                                                         [alertView show];
+                                                     }];
 }
 
 #pragma mark - UITableViewDelegate

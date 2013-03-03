@@ -82,29 +82,33 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
     if (indexPath.section == 0) { // Account
         if (indexPath.row == 2) { // logout
-            [DRPreferences setClientID:nil];
-            [DRPreferences setAPIKey:nil];
-            [DRPreferences save];
+            
+            UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"Are you sure logout?"
+                                                                     delegate:self
+                                                            cancelButtonTitle:@"Cancel"
+                                                       destructiveButtonTitle:@"Logout"
+                                                            otherButtonTitles:nil];
+            actionSheet.delegate = self;
+            [actionSheet showFromTabBar:self.tabBarController.tabBar];
         }
         
     }
+    
 }
 
 #pragma mark - UIActionSheetDelegate
 
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-    if (buttonIndex == 0) { // copy from web
-        DROAuthViewController *oauthVC = [self.storyboard instantiateViewControllerWithIdentifier:@"DROAuthViewController"];
-        [self.navigationController pushViewController:oauthVC animated:YES];
-    } else if (buttonIndex == 1) { // input by hand
-        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Login"
-                                                            message:@"Input Client ID & API Key"
-                                                           delegate:self
-                                                  cancelButtonTitle:@"Cancel"
-                                                  otherButtonTitles:@"Done", nil];
+    if (buttonIndex == 0) {
+        [DRPreferences setClientID:nil];
+        [DRPreferences setAPIKey:nil];
+        [DRPreferences save];
+        self.tabBarController.selectedIndex = 0;
     }
 }
 

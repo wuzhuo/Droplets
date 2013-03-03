@@ -61,11 +61,14 @@
 
 /* This method allows you to create a new droplet.
  * Sample URL: https://api.digitalocean.com/droplets/new?name=[DROPLET_NAME]&size_id=[SIZE_ID]&image_id=[IMAGE_ID]&region_id=[REGION_ID]&client_id=[YOUR_CLIENT_ID]&ssh_key_ids=[SSH_KEY_ID1],[SSH_KEY_ID2]
+ * Only valid hostname characters are allowed. (a-z, A-Z, 0-9, . and -)
  */
 - (void)createDropletWithName:(NSString *)name
                        sizeID:(NSNumber *)sizeID
                       imageID:(NSNumber *)imageID
                      regionID:(NSNumber *)regionID
+                      success:(void(^)(NSDictionary *dict))success
+                      failure:(void(^)(NSString *message))failure
 {
     [[DRAPIClient sharedInstance] getPath:@"droplets/new"
                                parameters:@{@"name": name, @"size_id": sizeID, @"image_id": imageID, @"region_id": regionID, @"client_id": [DRPreferences clientID], @"api_key": [DRPreferences APIKey]}
@@ -73,9 +76,18 @@
                                       
                                       id jsonObject = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingAllowFragments error:nil];
                                       NSLog(@"%@", jsonObject);
+                                      
+                                      NSString *status = jsonObject[@"status"];
+                                      if ([status isEqualToString:@"OK"]) {
+                                          NSDictionary *dict = jsonObject[@"droplet"];
+                                          if (success) success(dict);
+                                      } else if ([status isEqualToString:@"ERROR"]) {
+                                          if (failure) failure(@"Only valid hostname characters are allowed. (a-z, A-Z, 0-9, . and -)");
+                                      }
                                   }
                                   failure:^(AFHTTPRequestOperation *operation, NSError *error) {
                                       NSLog(@"error");
+                                      if (failure) failure(error.localizedDescription);
                                   }];
 }
 

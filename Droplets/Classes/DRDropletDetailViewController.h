@@ -8,11 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
-@interface DRDropletDetailViewController : UIViewController
+@interface DRDropletDetailViewController : UIViewController<UITableViewDataSource, UITableViewDelegate>
 
 @property (nonatomic, strong) NSDictionary *dropletDict;
+
 @property (nonatomic, strong) IBOutlet UILabel *ipAddressLabel;
 @property (nonatomic, strong) IBOutlet UILabel *regionLabel;
+@property (nonatomic, strong) IBOutlet UITableView *operationTableView;
 
 - (IBAction)bootButtonPressed:(id)sender;
 - (IBAction)shutdownButtonPressed:(id)sender;

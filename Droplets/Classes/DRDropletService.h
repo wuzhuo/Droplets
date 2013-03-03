@@ -21,7 +21,9 @@
 - (void)createDropletWithName:(NSString *)name
                        sizeID:(NSNumber *)sizeID
                       imageID:(NSNumber *)imageID
-                     regionID:(NSNumber *)regionID;
+                     regionID:(NSNumber *)regionID
+                      success:(void(^)(NSDictionary *dict))success
+                      failure:(void(^)(NSString *message))failure;
 
 - (void)destroyDroplet:(NSNumber *)dropletID;
 

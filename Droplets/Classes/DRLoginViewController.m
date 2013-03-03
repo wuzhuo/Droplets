@@ -8,6 +8,9 @@
 
 #import "DRLoginViewController.h"
 
+#define Client_Key_TextField_Tag 1001
+#define API_Key_TextField_Tag 1002
+
 @interface DRLoginViewController ()
 
 @end
@@ -35,12 +38,22 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
     if (indexPath.section == 1 && indexPath.row == 0) { // validate user
         [DRPreferences setClientID:self.clientIDTextField.text];
         [DRPreferences setAPIKey:self.apiKeyTextField.text];
         [DRPreferences save];
         [[DRServiceManager sharedInstance] validateUserAndDownloadEssentialData];
     }
+}
+
+#pragma mark - UITextFieldDelegate
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    [textField resignFirstResponder];
+    return YES;
 }
 
 @end
