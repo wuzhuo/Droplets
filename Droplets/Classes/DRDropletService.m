@@ -11,6 +11,19 @@
 
 @implementation DRDropletService
 
++ (DRDropletService *)sharedInstance
+{
+	static DRDropletService *_sharedInstance;
+	if(!_sharedInstance) {
+		static dispatch_once_t oncePredicate;
+		dispatch_once(&oncePredicate, ^{
+			_sharedInstance = [[DRDropletService alloc] init];
+        });
+    }
+    
+    return _sharedInstance;
+}
+
 - (void)showAllActiveDroplets:(void(^)(NSArray *array, NSError *error))completion
 {
     [[DRAPIClient sharedInstance] getPath:@"droplets/"
@@ -49,17 +62,16 @@
 /* This method allows you to create a new droplet.
  * Sample URL: https://api.digitalocean.com/droplets/new?name=[DROPLET_NAME]&size_id=[SIZE_ID]&image_id=[IMAGE_ID]&region_id=[REGION_ID]&client_id=[YOUR_CLIENT_ID]&ssh_key_ids=[SSH_KEY_ID1],[SSH_KEY_ID2]
  */
-- (void)newDropletWithName:(NSString *)name
-                    sizeID:(NSNumber *)sizeID
-                   imageID:(NSNumber *)imageID
-                  regionID:(NSNumber *)regionID
+- (void)createDropletWithName:(NSString *)name
+                       sizeID:(NSNumber *)sizeID
+                      imageID:(NSNumber *)imageID
+                     regionID:(NSNumber *)regionID
 {
     [[DRAPIClient sharedInstance] getPath:@"droplets/new"
                                parameters:@{@"name": name, @"size_id": sizeID, @"image_id": imageID, @"region_id": regionID, @"client_id": [DRPreferences clientID], @"api_key": [DRPreferences APIKey]}
                                   success:^(AFHTTPRequestOperation *operation, id responseObject) {
                                       
                                       id jsonObject = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingAllowFragments error:nil];
-                                      NSDictionary *result = jsonObject[@"droplet"];
                                       NSLog(@"%@", jsonObject);
                                   }
                                   failure:^(AFHTTPRequestOperation *operation, NSError *error) {

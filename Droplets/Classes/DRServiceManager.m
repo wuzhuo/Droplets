@@ -48,14 +48,12 @@
         return NO;
     }
     
-    [_sizeService requestAllSizes:nil];
-    [_regionService requestAllRegions:nil];
-    
     dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
     dispatch_group_t group = dispatch_group_create();
     
     dispatch_group_async(group, queue, ^{
         [_sizeService requestAllSizes:nil];
+        [_imageService requestAllImages:nil];
         [_regionService requestAllRegions:nil];
     });
     

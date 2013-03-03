@@ -7,10 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		AE05DE3E16E23E310075DF90 /* DRPickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AE05DE3D16E23E300075DF90 /* DRPickerViewController.m */; };
 		AE1A82D816E256700018FF2F /* DRServiceManager.m in Sources */ = {isa = PBXBuildFile; fileRef = AE1A82D716E256700018FF2F /* DRServiceManager.m */; };
 		AE1A82DB16E269BE0018FF2F /* DRModelManager.m in Sources */ = {isa = PBXBuildFile; fileRef = AE1A82DA16E269BE0018FF2F /* DRModelManager.m */; };
 		AE1A82E516E28AA40018FF2F /* js in Resources */ = {isa = PBXBuildFile; fileRef = AE1A82E416E28AA40018FF2F /* js */; };
+		AE1A82E916E2A6B30018FF2F /* DRCustomPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = AE1A82E816E2A6B30018FF2F /* DRCustomPickerView.m */; };
+		AE1A82EE16E2ACCF0018FF2F /* UIView+Frame.m in Sources */ = {isa = PBXBuildFile; fileRef = AE1A82ED16E2ACCF0018FF2F /* UIView+Frame.m */; };
+		AE1A82F116E2AEEF0018FF2F /* DRCustomPickerViewDataSouce.m in Sources */ = {isa = PBXBuildFile; fileRef = AE1A82F016E2AEEF0018FF2F /* DRCustomPickerViewDataSouce.m */; };
 		AE32E39616E181B500686384 /* DRLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AE32E39516E181B500686384 /* DRLoginViewController.m */; };
 		AE7C17B716E108B6007A30A3 /* DRDroplet.m in Sources */ = {isa = PBXBuildFile; fileRef = AE7C17B616E108B6007A30A3 /* DRDroplet.m */; };
 		AE7C17BA16E11127007A30A3 /* DRSizeService.m in Sources */ = {isa = PBXBuildFile; fileRef = AE7C17B916E11127007A30A3 /* DRSizeService.m */; };
@@ -44,13 +46,17 @@
 /* Begin PBXFileReference section */
 		2D77937147364B5E9C2BACF4 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = SOURCE_ROOT; };
 		8C70BB991A3C4E58871CB8C8 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		AE05DE3C16E23E300075DF90 /* DRPickerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DRPickerViewController.h; sourceTree = "<group>"; };
-		AE05DE3D16E23E300075DF90 /* DRPickerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DRPickerViewController.m; sourceTree = "<group>"; };
 		AE1A82D616E256700018FF2F /* DRServiceManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DRServiceManager.h; sourceTree = "<group>"; };
 		AE1A82D716E256700018FF2F /* DRServiceManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DRServiceManager.m; sourceTree = "<group>"; };
 		AE1A82D916E269BE0018FF2F /* DRModelManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DRModelManager.h; sourceTree = "<group>"; };
 		AE1A82DA16E269BE0018FF2F /* DRModelManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DRModelManager.m; sourceTree = "<group>"; };
 		AE1A82E416E28AA40018FF2F /* js */ = {isa = PBXFileReference; lastKnownFileType = folder; path = js; sourceTree = "<group>"; };
+		AE1A82E716E2A6B30018FF2F /* DRCustomPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DRCustomPickerView.h; sourceTree = "<group>"; };
+		AE1A82E816E2A6B30018FF2F /* DRCustomPickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DRCustomPickerView.m; sourceTree = "<group>"; };
+		AE1A82EC16E2ACCF0018FF2F /* UIView+Frame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Frame.h"; sourceTree = "<group>"; };
+		AE1A82ED16E2ACCF0018FF2F /* UIView+Frame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Frame.m"; sourceTree = "<group>"; };
+		AE1A82EF16E2AEEF0018FF2F /* DRCustomPickerViewDataSouce.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DRCustomPickerViewDataSouce.h; sourceTree = "<group>"; };
+		AE1A82F016E2AEEF0018FF2F /* DRCustomPickerViewDataSouce.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DRCustomPickerViewDataSouce.m; sourceTree = "<group>"; };
 		AE32E39416E181B400686384 /* DRLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DRLoginViewController.h; sourceTree = "<group>"; };
 		AE32E39516E181B500686384 /* DRLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DRLoginViewController.m; sourceTree = "<group>"; };
 		AE7C17B516E108B6007A30A3 /* DRDroplet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DRDroplet.h; sourceTree = "<group>"; };
@@ -120,6 +126,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		AE1A82E616E2A69A0018FF2F /* Custom */ = {
+			isa = PBXGroup;
+			children = (
+				AE1A82E716E2A6B30018FF2F /* DRCustomPickerView.h */,
+				AE1A82E816E2A6B30018FF2F /* DRCustomPickerView.m */,
+				AE1A82EF16E2AEEF0018FF2F /* DRCustomPickerViewDataSouce.h */,
+				AE1A82F016E2AEEF0018FF2F /* DRCustomPickerViewDataSouce.m */,
+			);
+			name = Custom;
+			sourceTree = "<group>";
+		};
 		AE7C17B416E1089B007A30A3 /* Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -220,6 +237,7 @@
 		AEDF480D16E0EC3A00CA919E /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				AE1A82E616E2A69A0018FF2F /* Custom */,
 				AEDF482616E0FF9900CA919E /* Categories */,
 				AEDF480E16E0EC3A00CA919E /* DRAppDelegate.h */,
 				AEDF480F16E0EC3A00CA919E /* DRAppDelegate.m */,
@@ -245,8 +263,6 @@
 				AE32E39516E181B500686384 /* DRLoginViewController.m */,
 				AE7C17D216E15E54007A30A3 /* DROAuthViewController.h */,
 				AE7C17D316E15E55007A30A3 /* DROAuthViewController.m */,
-				AE05DE3C16E23E300075DF90 /* DRPickerViewController.h */,
-				AE05DE3D16E23E300075DF90 /* DRPickerViewController.m */,
 				AE7C17D816E15F22007A30A3 /* DRSettingsViewController.h */,
 				AE7C17D916E15F23007A30A3 /* DRSettingsViewController.m */,
 			);
@@ -277,6 +293,8 @@
 			children = (
 				AEDF482716E0FFC200CA919E /* NSString+Extend.h */,
 				AEDF482816E0FFC200CA919E /* NSString+Extend.m */,
+				AE1A82EC16E2ACCF0018FF2F /* UIView+Frame.h */,
+				AE1A82ED16E2ACCF0018FF2F /* UIView+Frame.m */,
 			);
 			name = Categories;
 			sourceTree = "<group>";
@@ -384,9 +402,11 @@
 				AE7C17D416E15E55007A30A3 /* DROAuthViewController.m in Sources */,
 				AE7C17DA16E15F25007A30A3 /* DRSettingsViewController.m in Sources */,
 				AE32E39616E181B500686384 /* DRLoginViewController.m in Sources */,
-				AE05DE3E16E23E310075DF90 /* DRPickerViewController.m in Sources */,
 				AE1A82D816E256700018FF2F /* DRServiceManager.m in Sources */,
 				AE1A82DB16E269BE0018FF2F /* DRModelManager.m in Sources */,
+				AE1A82E916E2A6B30018FF2F /* DRCustomPickerView.m in Sources */,
+				AE1A82EE16E2ACCF0018FF2F /* UIView+Frame.m in Sources */,
+				AE1A82F116E2AEEF0018FF2F /* DRCustomPickerViewDataSouce.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

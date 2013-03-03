@@ -84,7 +84,13 @@
     // Configure the cell...
     NSDictionary *dict = _dropletArray[indexPath.row];
     cell.textLabel.text = dict[@"name"];
-    cell.detailTextLabel.text = dict[@"ip_address"];
+    
+    if ([dict[@"status"] isEqualToString:@"new"]) { // just created and maybe no ip yet
+        cell.detailTextLabel.text = @"Creating...";
+    } else {
+        cell.detailTextLabel.text = dict[@"ip_address"];
+    }
+    
     if ([dict[@"status"] isEqualToString:@"active"]) {
         cell.imageView.image = [UIImage imageNamed:@"green_light"];
     } else {
@@ -112,7 +118,6 @@
     if ([[segue identifier] isEqualToString:@"pushDropletDetailViewController"]) {
         DRDropletDetailViewController *dropletDetailVC = [segue destinationViewController];
         dropletDetailVC.dropletDict = _dropletArray[self.tableView.indexPathForSelectedRow.row];
-        
     }
 }
 

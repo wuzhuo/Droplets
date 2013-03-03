@@ -11,15 +11,17 @@
 
 @interface DRDropletService : NSObject
 
++ (DRDropletService *)sharedInstance;
+
 - (void)showAllActiveDroplets:(void(^)(NSArray *array, NSError *error))completion;
 
 - (void)showDropletWithID:(NSString *)dropletID
                completion:(void(^)(NSDictionary *dict, NSError *error))completion;
 
-- (void)newDropletWithName:(NSString *)name
-                    sizeID:(NSNumber *)sizeID
-                   imageID:(NSNumber *)imageID
-                  regionID:(NSNumber *)regionID;
+- (void)createDropletWithName:(NSString *)name
+                       sizeID:(NSNumber *)sizeID
+                      imageID:(NSNumber *)imageID
+                     regionID:(NSNumber *)regionID;
 
 - (void)destroyDroplet:(NSNumber *)dropletID;
 

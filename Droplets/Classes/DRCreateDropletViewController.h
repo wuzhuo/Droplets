@@ -7,11 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "DRCustomPickerView.h"
 
-@interface DRCreateDropletViewController : UITableViewController<UITextFieldDelegate, UIPickerViewDataSource, UIPickerViewDelegate>
+@interface DRCreateDropletViewController : UITableViewController<DRCustomPickerViewDataSource, DRCustomPickerViewDelegate, UITextFieldDelegate, UIAlertViewDelegate>
 
-@property (nonatomic, strong) IBOutlet UITextField *nameTextField;
-@property (nonatomic, strong) IBOutlet UITextField *sizeTextField;
+@property (nonatomic, strong) IBOutlet UILabel *nameLabel;
+@property (nonatomic, strong) IBOutlet UILabel *sizeLabel;
+@property (nonatomic, strong) IBOutlet UILabel *imageLabel;
+@property (nonatomic, strong) IBOutlet UILabel *regionLabel;
+@property (nonatomic, strong) DRCustomPickerView *pickerView;
 
 - (IBAction)cancelButtonPressed:(id)sender;
 

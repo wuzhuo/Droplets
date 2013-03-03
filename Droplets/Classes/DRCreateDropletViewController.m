@@ -7,6 +7,11 @@
 //
 
 #import "DRCreateDropletViewController.h"
+#import "DRDropletService.h"
+
+#define Size_Picker_View_Tag 1001
+#define Image_Picker_View_Tag 1002
+#define Region_Picker_View_Tag 1003
 
 @interface DRCreateDropletViewController ()
 @property (nonatomic, strong) NSMutableDictionary *dropletDict;
@@ -14,14 +19,21 @@
 
 @implementation DRCreateDropletViewController
 
+- (void)awakeFromNib
+{
+    _pickerView = [[DRCustomPickerView alloc] init];
+    _pickerView.bottom = self.view.frame.size.height;
+    _pickerView.dataSource = self;
+    _pickerView.delegate = self;
+    _pickerView.hidden = YES;
+    [self.view addSubview:_pickerView];
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     
-    UIPickerView *pickerView = [[UIPickerView alloc] initWithFrame:CGRectMake(0, 0, 320, 200)];
-    pickerView.dataSource = self;
-    self.sizeTextField.inputAccessoryView = pickerView;
-    
+    [self reloadDropletInfo];
 }
 
 - (void)didReceiveMemoryWarning
@@ -30,15 +42,25 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    
+    if ([_dropletDict[@"name"] isEqualToString:@""]) {
+        [self alertToInputName];
+    }
+}
+
 #pragma mark - Accessors
 
 - (NSMutableDictionary *)dropletDict
 {
     if (!_dropletDict) {
         _dropletDict = [[NSMutableDictionary alloc] initWithCapacity:4];
-        _dropletDict[@"size_id"] = @33;
-        _dropletDict[@"region_id"] = @1;
-        _dropletDict[@"image_id"] = @444;
+        _dropletDict[@"name"] = @"";
+        _dropletDict[@"size"] = [DRModelManager sharedInstance].sortedSizeDictKeys[0];
+        _dropletDict[@"image_id"] = [DRModelManager sharedInstance].sortedImageDictKeys[0];
+        _dropletDict[@"region_id"] = [DRModelManager sharedInstance].sortedRegionDictKeys[0];
     }
     return _dropletDict;
 }
@@ -50,18 +72,134 @@
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
-#pragma mark - Table view delegate
+- (void)reloadDropletInfo
+{
+    self.nameLabel.text = self.dropletDict[@"name"];
+    self.sizeLabel.text = self.dropletDict[@"size"];
+    NSDictionary *imageDict = [DRModelManager sharedInstance].imageDict;
+    self.imageLabel.text = imageDict[self.dropletDict[@"image_id"]];
+    NSDictionary *regionDict = [DRModelManager sharedInstance].regionDict;
+    self.regionLabel.text = regionDict[self.dropletDict[@"region_id"]];
+    [self.tableView reloadData];
+}
+
+- (void)alertToInputName
+{
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@""
+                                                        message:@"Input a Hostname"
+                                                       delegate:self
+                                              cancelButtonTitle:@"cancel"
+                                              otherButtonTitles:@"OK", nil];
+    alertView.alertViewStyle = UIAlertViewStylePlainTextInput;
+    UITextField *textField = [alertView textFieldAtIndex:0];
+    textField.delegate = self;
+    [alertView show];
+}
+
+- (void)createDroplet
+{
+    if ([_dropletDict[@"name"] isEqualToString:@""]) {
+        [self alertToInputName];
+        return;
+    }
+    
+    [[DRDropletService sharedInstance] createDropletWithName:_dropletDict[@"name"]
+                                                      sizeID:[DRModelManager sharedInstance].sizeDict[_dropletDict[@"size"]]
+                                                     imageID:_dropletDict[@"image_id"]
+                                                    regionID:_dropletDict[@"region_id"]];
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+#pragma mark - UITableViewDelegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (indexPath.section == 0) {
         if (indexPath.row == 0) { // droplet name
-            
+            [self alertToInputName];
+        } else {
+            if (indexPath.row == 1) {
+                self.pickerView.tag = Size_Picker_View_Tag;
+            } else if (indexPath.row == 2) {
+                self.pickerView.tag = Image_Picker_View_Tag;
+            } else if (indexPath.row == 3) {
+                self.pickerView.tag = Region_Picker_View_Tag;
+            }
+            self.pickerView.hidden = NO;
+            [self.pickerView reloadData];
         }
     } else if (indexPath.section == 1 && indexPath.row == 0) { // create droplet
-        
+        [self createDroplet];
     }
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
+
+#pragma mark - DRCustomPickerViewDataSource
+
+- (NSInteger)numberOfRowsInPickerView:(DRCustomPickerView *)pickerView
+{
+    if (pickerView.tag == Size_Picker_View_Tag) {
+        return [DRModelManager sharedInstance].sizeDict.count;
+    } else if (pickerView.tag == Image_Picker_View_Tag) {
+        return [DRModelManager sharedInstance].imageDict.count;
+    } else if (pickerView.tag == Region_Picker_View_Tag) {
+        return [DRModelManager sharedInstance].regionDict.count;
+    }
+    return 0;
+}
+
+- (NSString *)pickerView:(DRCustomPickerView *)pickerView titleForRow:(NSInteger)row
+{
+    if (pickerView.tag == Size_Picker_View_Tag) {
+        return [DRModelManager sharedInstance].sortedSizeDictKeys[row];
+    } else if (pickerView.tag == Image_Picker_View_Tag) {
+        NSDictionary *dict = [DRModelManager sharedInstance].imageDict;
+        id key = [DRModelManager sharedInstance].sortedImageDictKeys[row];
+        return dict[key];
+    } else if (pickerView.tag == Region_Picker_View_Tag) {
+        NSDictionary *dict = [DRModelManager sharedInstance].regionDict;
+        id key = [DRModelManager sharedInstance].sortedRegionDictKeys[row];
+        return dict[key];
+    }
+    return nil;
+}
+
+#pragma mark - DRCustomPickerViewDelegate
+
+- (void)pickerView:(DRCustomPickerView *)pickerView didSelectRow:(NSInteger)row
+{
+    if (pickerView.tag == Size_Picker_View_Tag) {
+        self.dropletDict[@"size"] = [DRModelManager sharedInstance].sortedSizeDictKeys[row];
+    } else if (pickerView.tag == Image_Picker_View_Tag) {
+        self.dropletDict[@"image_id"] = [DRModelManager sharedInstance].sortedImageDictKeys[row];
+    } else if (pickerView.tag == Region_Picker_View_Tag) {
+        self.dropletDict[@"region_id"] = [DRModelManager sharedInstance].sortedRegionDictKeys[row];
+    }
+    [self reloadDropletInfo];
+}
+
+- (void)pickerViewDidEndSelecting:(DRCustomPickerView *)pickerView
+{
+    self.pickerView.hidden = YES;
+}
+
+#pragma mark - UITextFieldDelegate
+
+- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField
+{
+    self.pickerView.hidden = YES;
+    return YES;
+}
+
+#pragma mark - UIAlertViewDelegate
+
+- (void)alertView:(UIAlertView *)alertView willDismissWithButtonIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex == 1) { // OK
+        UITextField *textField = [alertView textFieldAtIndex:0];
+        _dropletDict[@"name"] = [textField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+        [self reloadDropletInfo];
+    }
 }
 
 @end

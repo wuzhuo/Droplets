@@ -1,30 +1,14 @@
 //
-//  DRPickerViewController.m
+//  DRCustomPickerViewDataSouce.m
 //  Droplets
 //
 //  Created by Zhuo Wu on 02/03/2013.
 //  Copyright (c) 2013 zhuoapps.com. All rights reserved.
 //
 
-#import "DRPickerViewController.h"
+#import "DRCustomPickerViewDataSouce.h"
 
-@interface DRPickerViewController ()
-
-@end
-
-@implementation DRPickerViewController
-
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-	// Do any additional setup after loading the view.
-}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
+@implementation DRCustomPickerViewDataSouce
 
 #pragma mark - UIPickerViewDataSource
 
@@ -35,7 +19,7 @@
 
 - (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
 {
-    return 1;
+    return _dict.count;
 }
 
 #pragma mark - UIPickerViewDelegate
@@ -43,6 +27,11 @@
 - (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
 {
     return @"aaa";
+}
+
+- (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
+{
+    
 }
 
 @end

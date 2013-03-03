@@ -10,4 +10,6 @@
 
 @interface DRImageService : NSObject
 
+- (void)requestAllImages:(void(^)(NSArray *array, NSError *error))completion;
+
 @end

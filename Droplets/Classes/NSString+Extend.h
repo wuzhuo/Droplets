@@ -12,4 +12,8 @@
 
 - (NSURL *)toURL;
 
+/* This is used to convert the size(512MB, 1GB, 2GB, etc.) of memory into MB.
+ */
+- (NSInteger)sizeInMB;
+
 @end
