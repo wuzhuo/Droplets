@@ -10,6 +10,7 @@
 #define Droplets_Categories_h
 
 #import "NSString+Extend.h"
+#import "UIAlertView+Custom.h"
 #import "UIView+Frame.h"
 
 #endif

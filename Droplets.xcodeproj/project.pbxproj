@@ -41,6 +41,8 @@
 		AEDF483616E1054400CA919E /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AEDF482E16E102A200CA919E /* SystemConfiguration.framework */; };
 		AEDF483716E1054B00CA919E /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AEDF483016E102B000CA919E /* MobileCoreServices.framework */; };
 		AEF5B3DD16E3F724005AD706 /* DRSelectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AEF5B3DC16E3F723005AD706 /* DRSelectionViewController.m */; };
+		AEF5B3DF16E40D5A005AD706 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AEF5B3DE16E40D5A005AD706 /* QuartzCore.framework */; };
+		AEF5B3E216E41C16005AD706 /* UIAlertView+Custom.m in Sources */ = {isa = PBXBuildFile; fileRef = AEF5B3E116E41C16005AD706 /* UIAlertView+Custom.m */; };
 		F25382BE25544243A74A8DD4 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C70BB991A3C4E58871CB8C8 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -110,6 +112,9 @@
 		AEDF483016E102B000CA919E /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		AEF5B3DB16E3F723005AD706 /* DRSelectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DRSelectionViewController.h; sourceTree = "<group>"; };
 		AEF5B3DC16E3F723005AD706 /* DRSelectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DRSelectionViewController.m; sourceTree = "<group>"; };
+		AEF5B3DE16E40D5A005AD706 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		AEF5B3E016E41C16005AD706 /* UIAlertView+Custom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIAlertView+Custom.h"; sourceTree = "<group>"; };
+		AEF5B3E116E41C16005AD706 /* UIAlertView+Custom.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIAlertView+Custom.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -117,6 +122,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AEF5B3DF16E40D5A005AD706 /* QuartzCore.framework in Frameworks */,
 				AEDF483716E1054B00CA919E /* MobileCoreServices.framework in Frameworks */,
 				AEDF483616E1054400CA919E /* SystemConfiguration.framework in Frameworks */,
 				AEDF47D116E0EA5A00CA919E /* UIKit.framework in Frameworks */,
@@ -176,6 +182,7 @@
 		AEDF47CF16E0EA5A00CA919E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				AEF5B3DE16E40D5A005AD706 /* QuartzCore.framework */,
 				AEDF483016E102B000CA919E /* MobileCoreServices.framework */,
 				AEDF482E16E102A200CA919E /* SystemConfiguration.framework */,
 				AEDF47D016E0EA5A00CA919E /* UIKit.framework */,
@@ -298,6 +305,8 @@
 			children = (
 				AEDF482716E0FFC200CA919E /* NSString+Extend.h */,
 				AEDF482816E0FFC200CA919E /* NSString+Extend.m */,
+				AEF5B3E016E41C16005AD706 /* UIAlertView+Custom.h */,
+				AEF5B3E116E41C16005AD706 /* UIAlertView+Custom.m */,
 				AE1A82EC16E2ACCF0018FF2F /* UIView+Frame.h */,
 				AE1A82ED16E2ACCF0018FF2F /* UIView+Frame.m */,
 			);
@@ -413,6 +422,7 @@
 				AE1A82EE16E2ACCF0018FF2F /* UIView+Frame.m in Sources */,
 				AE1A82F116E2AEEF0018FF2F /* DRCustomPickerViewDataSouce.m in Sources */,
 				AEF5B3DD16E3F724005AD706 /* DRSelectionViewController.m in Sources */,
+				AEF5B3E216E41C16005AD706 /* UIAlertView+Custom.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

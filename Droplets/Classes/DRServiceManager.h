@@ -17,8 +17,8 @@
 
 /* Check if the client id and api key are valid.
  * It will try to download essential data such as droplet sizes, region, images, etc.
- * The downloading is async and a boolean result returns after finishing downloading.
  */
-- (BOOL)validateUserAndDownloadEssentialData;
+- (void)validateUserAndDownloadEssentialDataSuccess:(void(^)())success
+                                            failure:(void(^)(NSString *errorMessage))failure;
 
 @end

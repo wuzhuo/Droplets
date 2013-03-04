@@ -7,11 +7,11 @@
 
 #import "DRServiceManager.h"
 
-//#define Base_URL @"https://api.digitalocean.com"
+#define Base_URL @"https://api.digitalocean.com"
 
 @implementation DRServiceManager
 {
-//    AFHTTPClient *_httpClient;
+    AFHTTPClient *_httpClient;
     DRSizeService *_sizeService;
     DRRegionService *_regionService;
     DRImageService *_imageService;
@@ -34,7 +34,7 @@
 {
     self = [super init];
     if (self) {
-//        _httpClient = [[AFHTTPClient alloc] initWithBaseURL:Base_URL.toURL];
+        _httpClient = [[AFHTTPClient alloc] initWithBaseURL:Base_URL.toURL];
         _sizeService = [[DRSizeService alloc] init];
         _regionService = [[DRRegionService alloc] init];
         _imageService = [[DRImageService alloc] init];
@@ -42,29 +42,114 @@
     return self;
 }
 
-- (BOOL)validateUserAndDownloadEssentialData
+- (void)validateUserAndDownloadEssentialDataSuccess:(void(^)())success
+                                            failure:(void(^)(NSString *errorMessage))failure
 {
+#warning TODO
+    success();
+    return;
+    
     if (![DRPreferences clientID] || ![DRPreferences APIKey]) {
-        return NO;
+        if (failure) failure(@"Client ID & API Key cannot be blank!");
+        return;
     }
     
-    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
-    dispatch_group_t group = dispatch_group_create();
+    [self requestAllSizesSuccess:^{
+        [self requestAllImagesSuccess:^{
+            [self requestAllRegionsSuccess:^{
+                // Check the client id and api key in preferences plist. Both will be nil if those are invalid.
+                if ([DRPreferences clientID] && [DRPreferences APIKey]) {
+                    if (success) success();
+                }
+                
+            } failure:^(NSString *message) {
+                if (failure) failure(message);
+            }];
+        } failure:^(NSString *message) {
+            if (failure) failure(message);
+        }];
+    } failure:^(NSString *message) {
+        if (failure) failure(message);
+    }];
     
-    dispatch_group_async(group, queue, ^{
-        [_sizeService requestAllSizes:nil];
-        [_imageService requestAllImages:nil];
-        [_regionService requestAllRegions:nil];
-    });
-    
-    dispatch_group_wait(group, DISPATCH_TIME_FOREVER);
-    dispatch_release(group);
-    
-    // Check the client id and api key in preferences plist. Both will be nil if those are invalid.
-    if ([DRPreferences clientID] && [DRPreferences APIKey]) {
-        return YES;
-    }
-    return NO;
+}
+
+- (void)requestAllSizesSuccess:(void(^)())success
+                       failure:(void(^)(NSString *message))failure
+{
+    [_httpClient getPath:@"sizes/"
+              parameters:@{@"client_id": [DRPreferences clientID], @"api_key": [DRPreferences APIKey]}
+                 success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                     
+                     id jsonObject = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingAllowFragments error:nil];
+                     NSLog(@"%@", jsonObject);
+                     NSArray *result = jsonObject[@"sizes"];
+                     
+                     if (result) {
+                         [[DRModelManager sharedInstance] processSizeData:result];
+                         if (success) success();
+                     } else {
+                         [DRPreferences resetLoginKey];
+                         if (failure) failure(@"Invaild User!");
+                     }
+                     
+                 }
+                 failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                     NSLog(@"error");
+                     if (failure) failure(error.localizedDescription);
+                 }];
+}
+
+- (void)requestAllImagesSuccess:(void(^)())success
+                        failure:(void(^)(NSString *message))failure
+{
+    [_httpClient getPath:@"images/"
+              parameters:@{@"client_id": [DRPreferences clientID], @"api_key": [DRPreferences APIKey]}
+                 success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                     
+                     id jsonObject = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingAllowFragments error:nil];
+                     NSLog(@"%@", jsonObject);
+                     NSArray *result = jsonObject[@"images"];
+                     
+                     if (result) {
+                         [[DRModelManager sharedInstance] processImageData:result];
+                         if (success) success();
+                     } else {
+                         [DRPreferences resetLoginKey];
+                         if (failure) failure(@"Invaild User!");
+                     }
+                     
+                 }
+                 failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                     NSLog(@"error");
+                     if (failure) failure(error.localizedDescription);
+                 }];
+}
+
+- (void)requestAllRegionsSuccess:(void(^)())success
+                         failure:(void(^)(NSString *message))failure
+{
+    [_httpClient getPath:@"regions/"
+              parameters:@{@"client_id": [DRPreferences clientID], @"api_key": [DRPreferences APIKey]}
+                 success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                     
+                     id jsonObject = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingAllowFragments error:nil];
+                     NSLog(@"%@", jsonObject);
+                     NSArray *result = jsonObject[@"regions"];
+                     
+                     if (result) {
+                         [[DRModelManager sharedInstance] processRegionData:result];
+                         if (success) success();
+                     } else {
+                         [DRPreferences resetLoginKey];
+                         if (failure) failure(@"Invaild User!");
+                     }
+                     
+                 }
+                 failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                     NSLog(@"error");
+                     if (failure) failure(error.localizedDescription);
+                 }];
 }
 
 @end

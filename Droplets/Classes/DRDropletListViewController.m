@@ -51,17 +51,12 @@
 {
     [super viewDidAppear:animated];
     
-    if ([[DRServiceManager sharedInstance] validateUserAndDownloadEssentialData]) {
-        [_dropletService showAllActiveDroplets:^(NSArray *array, NSError *error) {
-            if (!error) {
-                self.dropletArray = array;
-                [self.tableView reloadData];
-            }
-        }];
-    } else {
-        UINavigationController *loginNC = [self.storyboard instantiateViewControllerWithIdentifier:@"DRLoginNavigationController"];
-        [self presentViewController:loginNC animated:YES completion:nil];
-    }
+    [_dropletService showAllActiveDroplets:^(NSArray *array, NSError *error) {
+        if (!error) {
+            self.dropletArray = array;
+            [self.tableView reloadData];
+        }
+    }];
 }
 
 #pragma mark - Table view data source

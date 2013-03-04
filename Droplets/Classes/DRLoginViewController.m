@@ -20,10 +20,10 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
+    
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
- 
+    
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
@@ -44,7 +44,14 @@
         [DRPreferences setClientID:self.clientIDTextField.text];
         [DRPreferences setAPIKey:self.apiKeyTextField.text];
         [DRPreferences save];
-        [[DRServiceManager sharedInstance] validateUserAndDownloadEssentialData];
+        [[DRServiceManager sharedInstance] validateUserAndDownloadEssentialDataSuccess:^{
+            UITabBarController *tabBarController = [self.storyboard instantiateViewControllerWithIdentifier:@"DRMainTabBarController"];
+            UIWindow* window = [[UIApplication sharedApplication].delegate window];
+            window.rootViewController = tabBarController;
+            [window makeKeyAndVisible];
+        } failure:^(NSString *errorMessage) {
+            [UIAlertView alertErrorMessage:errorMessage];
+        }];
     }
 }
 
