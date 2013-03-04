@@ -12,6 +12,7 @@
 #import "DRRegionService.h"
 #import "DRDropletDetailViewController.h"
 #import "DRLoginViewController.h"
+#import "SVPullToRefresh.h"
 
 @interface DRDropletListViewController ()
 @property (nonatomic, strong) NSArray *dropletArray;
@@ -39,6 +40,12 @@
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    __weak DRDropletListViewController *weakSelf = self;
+    
+    [self.tableView addPullToRefreshWithActionHandler:^{
+        [weakSelf reloadData];
+    }];
+    [self.tableView triggerPullToRefresh];
 }
 
 - (void)didReceiveMemoryWarning
@@ -50,13 +57,6 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    
-    [_dropletService showAllActiveDroplets:^(NSArray *array, NSError *error) {
-        if (!error) {
-            self.dropletArray = array;
-            [self.tableView reloadData];
-        }
-    }];
 }
 
 #pragma mark - Table view data source
@@ -114,6 +114,17 @@
         DRDropletDetailViewController *dropletDetailVC = [segue destinationViewController];
         dropletDetailVC.dropletDict = _dropletArray[self.tableView.indexPathForSelectedRow.row];
     }
+}
+
+- (void)reloadData
+{
+    [_dropletService showAllActiveDropletsSuccess:^(NSArray *array) {
+        self.dropletArray = array;
+        [self.tableView reloadData];
+        [self.tableView.pullToRefreshView stopAnimating];
+    } failure:^(NSString *message) {
+        [self.tableView.pullToRefreshView stopAnimating];
+    }];
 }
 
 @end

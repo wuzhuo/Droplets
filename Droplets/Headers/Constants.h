@@ -9,6 +9,6 @@
 #ifndef Droplets_Constants_h
 #define Droplets_Constants_h
 
-
+#define Base_URL @"https://api.digitalocean.com"
 
 #endif

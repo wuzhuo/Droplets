@@ -7,9 +7,12 @@
 //
 
 #import "DRDropletService.h"
-#import "DRAPIClient.h"
+#import "AFHTTPClient.h"
 
 @implementation DRDropletService
+{
+    AFHTTPClient *_httpClient;
+}
 
 + (DRDropletService *)sharedInstance
 {
@@ -24,39 +27,64 @@
     return _sharedInstance;
 }
 
-- (void)showAllActiveDroplets:(void(^)(NSArray *array, NSError *error))completion
+- (id)init
 {
-    [[DRAPIClient sharedInstance] getPath:@"droplets/"
-                               parameters:@{@"client_id": [DRPreferences clientID], @"api_key": [DRPreferences APIKey]}
-                                  success:^(AFHTTPRequestOperation *operation, id responseObject) {
-                                      
-                                      id jsonObject = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingAllowFragments error:nil];
-                                      NSArray *result = jsonObject[@"droplets"];
-                                      NSLog(@"%@", jsonObject);
-                                      completion(result, nil);
-                                  }
-                                  failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-                                      NSLog(@"error");
-                                      completion(nil, error);
-                                  }];
+    self = [super init];
+    if (self) {
+        _httpClient = [[AFHTTPClient alloc] initWithBaseURL:Base_URL.toURL];
+    }
+    return self;
+}
+
+- (void)showAllActiveDropletsSuccess:(void(^)(NSArray *array))success
+                             failure:(void(^)(NSString *message))failure
+{
+    [_httpClient getPath:@"droplets/"
+              parameters:@{@"client_id": [DRPreferences clientID], @"api_key": [DRPreferences APIKey]}
+                 success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                     
+                     id jsonObject = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingAllowFragments error:nil];
+                     NSLog(@"%@", jsonObject);
+                     
+                     NSString *status = jsonObject[@"status"];
+                     if ([status isEqualToString:@"OK"]) {
+                         NSArray *result = jsonObject[@"droplets"];
+                         if (success) success(result);
+                     } else if ([status isEqualToString:@"ERROR"]) {
+                         if (failure) failure(@"");
+                     }
+                     
+                 }
+                 failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                     NSLog(@"%@", error.localizedDescription);
+                     if (failure) failure(error.localizedDescription);
+                 }];
 }
 
 - (void)showDropletWithID:(NSString *)dropletID
-               completion:(void(^)(NSDictionary *dict, NSError *error))completion
+                  success:(void(^)(NSDictionary *dict))success
+                  failure:(void(^)(NSString *message))failure;
 {
-    [[DRAPIClient sharedInstance] getPath:[@"droplets/" stringByAppendingString:dropletID]
-                               parameters:@{@"client_id": [DRPreferences clientID], @"api_key": [DRPreferences APIKey]}
-                                  success:^(AFHTTPRequestOperation *operation, id responseObject) {
-                                      
-                                      id jsonObject = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingAllowFragments error:nil];
-                                      NSDictionary *result = jsonObject[@"droplet"];
-                                      NSLog(@"%@", jsonObject);
-                                      completion(result, nil);
-                                  }
-                                  failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-                                      NSLog(@"error");
-                                      completion(nil, error);
-                                  }];
+    [_httpClient getPath:[@"droplets/" stringByAppendingString:dropletID]
+              parameters:@{@"client_id": [DRPreferences clientID], @"api_key": [DRPreferences APIKey]}
+                 success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                     
+                     id jsonObject = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingAllowFragments error:nil];
+                     NSLog(@"%@", jsonObject);
+                     
+                     NSString *status = jsonObject[@"status"];
+                     if ([status isEqualToString:@"OK"]) {
+                         NSDictionary *result = jsonObject[@"droplet"];
+                         if (success) success(result);
+                     } else if ([status isEqualToString:@"ERROR"]) {
+                         if (failure) failure(@"");
+                     }
+                     
+                 }
+                 failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                     NSLog(@"%@", error.localizedDescription);
+                     if (failure) failure(error.localizedDescription);
+                 }];
 }
 
 /* This method allows you to create a new droplet.
@@ -70,25 +98,25 @@
                       success:(void(^)(NSDictionary *dict))success
                       failure:(void(^)(NSString *message))failure
 {
-    [[DRAPIClient sharedInstance] getPath:@"droplets/new"
-                               parameters:@{@"name": name, @"size_id": sizeID, @"image_id": imageID, @"region_id": regionID, @"client_id": [DRPreferences clientID], @"api_key": [DRPreferences APIKey]}
-                                  success:^(AFHTTPRequestOperation *operation, id responseObject) {
-                                      
-                                      id jsonObject = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingAllowFragments error:nil];
-                                      NSLog(@"%@", jsonObject);
-                                      
-                                      NSString *status = jsonObject[@"status"];
-                                      if ([status isEqualToString:@"OK"]) {
-                                          NSDictionary *dict = jsonObject[@"droplet"];
-                                          if (success) success(dict);
-                                      } else if ([status isEqualToString:@"ERROR"]) {
-                                          if (failure) failure(@"Only valid hostname characters are allowed. (a-z, A-Z, 0-9, . and -)");
-                                      }
-                                  }
-                                  failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-                                      NSLog(@"error");
-                                      if (failure) failure(error.localizedDescription);
-                                  }];
+    [_httpClient getPath:@"droplets/new"
+              parameters:@{@"name": name, @"size_id": sizeID, @"image_id": imageID, @"region_id": regionID, @"client_id": [DRPreferences clientID], @"api_key": [DRPreferences APIKey]}
+                 success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                     
+                     id jsonObject = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingAllowFragments error:nil];
+                     NSLog(@"%@", jsonObject);
+                     
+                     NSString *status = jsonObject[@"status"];
+                     if ([status isEqualToString:@"OK"]) {
+                         NSDictionary *result = jsonObject[@"droplet"];
+                         if (success) success(result);
+                     } else if ([status isEqualToString:@"ERROR"]) {
+                         if (failure) failure(@"Only valid hostname characters are allowed. (a-z, A-Z, 0-9, . and -)");
+                     }
+                 }
+                 failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                     NSLog(@"%@", error.localizedDescription);
+                     if (failure) failure(error.localizedDescription);
+                 }];
 }
 
 - (void)rebootDroplet:(NSNumber *)dropletID
@@ -96,24 +124,24 @@
               failure:(void(^)(NSString *message))failure
 {
     NSString *url = [NSString stringWithFormat:@"droplets/%@/reboot/", dropletID];
-    [[DRAPIClient sharedInstance] getPath:url
-                               parameters:@{@"client_id": [DRPreferences clientID], @"api_key": [DRPreferences APIKey]}
-                                  success:^(AFHTTPRequestOperation *operation, id responseObject) {
-                                      
-                                      id jsonObject = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingAllowFragments error:nil];
-                                      NSLog(@"%@", jsonObject);
-                                      
-                                      NSString *status = jsonObject[@"status"];
-                                      if ([status isEqualToString:@"OK"]) {
-                                          if (success) success();
-                                      } else if ([status isEqualToString:@"ERROR"]) {
-                                          if (failure) failure(@"Failed!");
-                                      }
-                                  }
-                                  failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-                                      NSLog(@"error");
-                                      if (failure) failure(error.localizedDescription);
-                                  }];
+    [_httpClient getPath:url
+              parameters:@{@"client_id": [DRPreferences clientID], @"api_key": [DRPreferences APIKey]}
+                 success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                     
+                     id jsonObject = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingAllowFragments error:nil];
+                     NSLog(@"%@", jsonObject);
+                     
+                     NSString *status = jsonObject[@"status"];
+                     if ([status isEqualToString:@"OK"]) {
+                         if (success) success();
+                     } else if ([status isEqualToString:@"ERROR"]) {
+                         if (failure) failure(@"Failed!");
+                     }
+                 }
+                 failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                     NSLog(@"%@", error.localizedDescription);
+                     if (failure) failure(error.localizedDescription);
+                 }];
 }
 
 - (void)powerCycleDroplet:(NSNumber *)dropletID
@@ -121,24 +149,24 @@
                   failure:(void(^)(NSString *message))failure
 {
     NSString *url = [NSString stringWithFormat:@"droplets/%@/power_cycle/", dropletID];
-    [[DRAPIClient sharedInstance] getPath:url
-                               parameters:@{@"client_id": [DRPreferences clientID], @"api_key": [DRPreferences APIKey]}
-                                  success:^(AFHTTPRequestOperation *operation, id responseObject) {
-                                      
-                                      id jsonObject = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingAllowFragments error:nil];
-                                      NSLog(@"%@", jsonObject);
-                                      
-                                      NSString *status = jsonObject[@"status"];
-                                      if ([status isEqualToString:@"OK"]) {
-                                          if (success) success();
-                                      } else if ([status isEqualToString:@"ERROR"]) {
-                                          if (failure) failure(@"Failed!");
-                                      }
-                                  }
-                                  failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-                                      NSLog(@"error");
-                                      if (failure) failure(error.localizedDescription);
-                                  }];
+    [_httpClient getPath:url
+              parameters:@{@"client_id": [DRPreferences clientID], @"api_key": [DRPreferences APIKey]}
+                 success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                     
+                     id jsonObject = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingAllowFragments error:nil];
+                     NSLog(@"%@", jsonObject);
+                     
+                     NSString *status = jsonObject[@"status"];
+                     if ([status isEqualToString:@"OK"]) {
+                         if (success) success();
+                     } else if ([status isEqualToString:@"ERROR"]) {
+                         if (failure) failure(@"Failed!");
+                     }
+                 }
+                 failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                     NSLog(@"%@", error.localizedDescription);
+                     if (failure) failure(error.localizedDescription);
+                 }];
 }
 
 - (void)shutDownDroplet:(NSNumber *)dropletID
@@ -146,24 +174,24 @@
                 failure:(void(^)(NSString *message))failure
 {
     NSString *url = [NSString stringWithFormat:@"droplets/%@/shutdown/", dropletID];
-    [[DRAPIClient sharedInstance] getPath:url
-                               parameters:@{@"client_id": [DRPreferences clientID], @"api_key": [DRPreferences APIKey]}
-                                  success:^(AFHTTPRequestOperation *operation, id responseObject) {
-                                      
-                                      id jsonObject = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingAllowFragments error:nil];
-                                      NSLog(@"%@", jsonObject);
-                                      
-                                      NSString *status = jsonObject[@"status"];
-                                      if ([status isEqualToString:@"OK"]) {
-                                          if (success) success();
-                                      } else if ([status isEqualToString:@"ERROR"]) {
-                                          if (failure) failure(@"Failed!");
-                                      }
-                                  }
-                                  failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-                                      NSLog(@"error");
-                                      if (failure) failure(error.localizedDescription);
-                                  }];
+    [_httpClient getPath:url
+              parameters:@{@"client_id": [DRPreferences clientID], @"api_key": [DRPreferences APIKey]}
+                 success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                     
+                     id jsonObject = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingAllowFragments error:nil];
+                     NSLog(@"%@", jsonObject);
+                     
+                     NSString *status = jsonObject[@"status"];
+                     if ([status isEqualToString:@"OK"]) {
+                         if (success) success();
+                     } else if ([status isEqualToString:@"ERROR"]) {
+                         if (failure) failure(@"Failed!");
+                     }
+                 }
+                 failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                     NSLog(@"%@", error.localizedDescription);
+                     if (failure) failure(error.localizedDescription);
+                 }];
 }
 
 - (void)powerOffDroplet:(NSNumber *)dropletID
@@ -171,24 +199,24 @@
                 failure:(void(^)(NSString *message))failure
 {
     NSString *url = [NSString stringWithFormat:@"droplets/%@/power_off/", dropletID];
-    [[DRAPIClient sharedInstance] getPath:url
-                               parameters:@{@"client_id": [DRPreferences clientID], @"api_key": [DRPreferences APIKey]}
-                                  success:^(AFHTTPRequestOperation *operation, id responseObject) {
-                                      
-                                      id jsonObject = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingAllowFragments error:nil];
-                                      NSLog(@"%@", jsonObject);
-                                      
-                                      NSString *status = jsonObject[@"status"];
-                                      if ([status isEqualToString:@"OK"]) {
-                                          if (success) success();
-                                      } else if ([status isEqualToString:@"ERROR"]) {
-                                          if (failure) failure(@"Failed!");
-                                      }
-                                  }
-                                  failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-                                      NSLog(@"error");
-                                      if (failure) failure(error.localizedDescription);
-                                  }];
+    [_httpClient getPath:url
+              parameters:@{@"client_id": [DRPreferences clientID], @"api_key": [DRPreferences APIKey]}
+                 success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                     
+                     id jsonObject = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingAllowFragments error:nil];
+                     NSLog(@"%@", jsonObject);
+                     
+                     NSString *status = jsonObject[@"status"];
+                     if ([status isEqualToString:@"OK"]) {
+                         if (success) success();
+                     } else if ([status isEqualToString:@"ERROR"]) {
+                         if (failure) failure(@"Failed!");
+                     }
+                 }
+                 failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                     NSLog(@"%@", error.localizedDescription);
+                     if (failure) failure(error.localizedDescription);
+                 }];
 }
 
 - (void)powerOnDroplet:(NSNumber *)dropletID
@@ -196,24 +224,24 @@
                failure:(void(^)(NSString *message))failure
 {
     NSString *url = [NSString stringWithFormat:@"droplets/%@/power_on/", dropletID];
-    [[DRAPIClient sharedInstance] getPath:url
-                               parameters:@{@"client_id": [DRPreferences clientID], @"api_key": [DRPreferences APIKey]}
-                                  success:^(AFHTTPRequestOperation *operation, id responseObject) {
-                                      
-                                      id jsonObject = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingAllowFragments error:nil];
-                                      NSLog(@"%@", jsonObject);
-                                      
-                                      NSString *status = jsonObject[@"status"];
-                                      if ([status isEqualToString:@"OK"]) {
-                                          if (success) success();
-                                      } else if ([status isEqualToString:@"ERROR"]) {
-                                          if (failure) failure(@"Failed!");
-                                      }
-                                  }
-                                  failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-                                      NSLog(@"error");
-                                      if (failure) failure(error.localizedDescription);
-                                  }];
+    [_httpClient getPath:url
+              parameters:@{@"client_id": [DRPreferences clientID], @"api_key": [DRPreferences APIKey]}
+                 success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                     
+                     id jsonObject = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingAllowFragments error:nil];
+                     NSLog(@"%@", jsonObject);
+                     
+                     NSString *status = jsonObject[@"status"];
+                     if ([status isEqualToString:@"OK"]) {
+                         if (success) success();
+                     } else if ([status isEqualToString:@"ERROR"]) {
+                         if (failure) failure(@"Failed!");
+                     }
+                 }
+                 failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                     NSLog(@"%@", error.localizedDescription);
+                     if (failure) failure(error.localizedDescription);
+                 }];
 }
 
 - (void)resetRootPasswordDroplet:(NSNumber *)dropletID
@@ -221,24 +249,24 @@
                          failure:(void(^)(NSString *message))failure
 {
     NSString *url = [NSString stringWithFormat:@"droplets/%@/password_reset/", dropletID];
-    [[DRAPIClient sharedInstance] getPath:url
-                               parameters:@{@"client_id": [DRPreferences clientID], @"api_key": [DRPreferences APIKey]}
-                                  success:^(AFHTTPRequestOperation *operation, id responseObject) {
-                                      
-                                      id jsonObject = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingAllowFragments error:nil];
-                                      NSLog(@"%@", jsonObject);
-                                      
-                                      NSString *status = jsonObject[@"status"];
-                                      if ([status isEqualToString:@"OK"]) {
-                                          if (success) success();
-                                      } else if ([status isEqualToString:@"ERROR"]) {
-                                          if (failure) failure(@"Failed!");
-                                      }
-                                  }
-                                  failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-                                      NSLog(@"error");
-                                      if (failure) failure(error.localizedDescription);
-                                  }];
+    [_httpClient getPath:url
+              parameters:@{@"client_id": [DRPreferences clientID], @"api_key": [DRPreferences APIKey]}
+                 success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                     
+                     id jsonObject = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingAllowFragments error:nil];
+                     NSLog(@"%@", jsonObject);
+                     
+                     NSString *status = jsonObject[@"status"];
+                     if ([status isEqualToString:@"OK"]) {
+                         if (success) success();
+                     } else if ([status isEqualToString:@"ERROR"]) {
+                         if (failure) failure(@"Failed!");
+                     }
+                 }
+                 failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                     NSLog(@"%@", error.localizedDescription);
+                     if (failure) failure(error.localizedDescription);
+                 }];
 }
 
 - (void)resizeDroplet:(NSNumber *)dropletID
@@ -247,24 +275,24 @@
               failure:(void(^)(NSString *message))failure
 {
     NSString *url = [NSString stringWithFormat:@"droplets/%@/resize/", dropletID];
-    [[DRAPIClient sharedInstance] getPath:url
-                               parameters:@{@"size_id": sizeID, @"client_id": [DRPreferences clientID], @"api_key": [DRPreferences APIKey]}
-                                  success:^(AFHTTPRequestOperation *operation, id responseObject) {
-                                      
-                                      id jsonObject = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingAllowFragments error:nil];
-                                      NSLog(@"%@", jsonObject);
-                                      
-                                      NSString *status = jsonObject[@"status"];
-                                      if ([status isEqualToString:@"OK"]) {
-                                          if (success) success();
-                                      } else if ([status isEqualToString:@"ERROR"]) {
-                                          if (failure) failure(@"Failed!");
-                                      }
-                                  }
-                                  failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-                                      NSLog(@"error");
-                                      if (failure) failure(error.localizedDescription);
-                                  }];
+    [_httpClient getPath:url
+              parameters:@{@"size_id": sizeID, @"client_id": [DRPreferences clientID], @"api_key": [DRPreferences APIKey]}
+                 success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                     
+                     id jsonObject = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingAllowFragments error:nil];
+                     NSLog(@"%@", jsonObject);
+                     
+                     NSString *status = jsonObject[@"status"];
+                     if ([status isEqualToString:@"OK"]) {
+                         if (success) success();
+                     } else if ([status isEqualToString:@"ERROR"]) {
+                         if (failure) failure(@"Failed!");
+                     }
+                 }
+                 failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                     NSLog(@"%@", error.localizedDescription);
+                     if (failure) failure(error.localizedDescription);
+                 }];
 }
 
 - (void)takeASnapshotDroplet:(NSNumber *)dropletID
@@ -273,24 +301,24 @@
                      failure:(void(^)(NSString *message))failure
 {
     NSString *url = [NSString stringWithFormat:@"droplets/%@/snapshot/", dropletID];
-    [[DRAPIClient sharedInstance] getPath:url
-                               parameters:@{@"name": name, @"client_id": [DRPreferences clientID], @"api_key": [DRPreferences APIKey]}
-                                  success:^(AFHTTPRequestOperation *operation, id responseObject) {
-                                      
-                                      id jsonObject = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingAllowFragments error:nil];
-                                      NSLog(@"%@", jsonObject);
-                                      
-                                      NSString *status = jsonObject[@"status"];
-                                      if ([status isEqualToString:@"OK"]) {
-                                          if (success) success();
-                                      } else if ([status isEqualToString:@"ERROR"]) {
-                                          if (failure) failure(@"Failed!");
-                                      }
-                                  }
-                                  failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-                                      NSLog(@"error");
-                                      if (failure) failure(error.localizedDescription);
-                                  }];
+    [_httpClient getPath:url
+              parameters:@{@"name": name, @"client_id": [DRPreferences clientID], @"api_key": [DRPreferences APIKey]}
+                 success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                     
+                     id jsonObject = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingAllowFragments error:nil];
+                     NSLog(@"%@", jsonObject);
+                     
+                     NSString *status = jsonObject[@"status"];
+                     if ([status isEqualToString:@"OK"]) {
+                         if (success) success();
+                     } else if ([status isEqualToString:@"ERROR"]) {
+                         if (failure) failure(@"Failed!");
+                     }
+                 }
+                 failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                     NSLog(@"%@", error.localizedDescription);
+                     if (failure) failure(error.localizedDescription);
+                 }];
 }
 
 - (void)restoreDroplet:(NSNumber *)dropletID
@@ -299,24 +327,24 @@
                failure:(void(^)(NSString *message))failure
 {
     NSString *url = [NSString stringWithFormat:@"droplets/%@/restore/", dropletID];
-    [[DRAPIClient sharedInstance] getPath:url
-                               parameters:@{@"image_id": imageID, @"client_id": [DRPreferences clientID], @"api_key": [DRPreferences APIKey]}
-                                  success:^(AFHTTPRequestOperation *operation, id responseObject) {
-                                      
-                                      id jsonObject = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingAllowFragments error:nil];
-                                      NSLog(@"%@", jsonObject);
-                                      
-                                      NSString *status = jsonObject[@"status"];
-                                      if ([status isEqualToString:@"OK"]) {
-                                          if (success) success();
-                                      } else if ([status isEqualToString:@"ERROR"]) {
-                                          if (failure) failure(@"Failed!");
-                                      }
-                                  }
-                                  failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-                                      NSLog(@"error");
-                                      if (failure) failure(error.localizedDescription);
-                                  }];
+    [_httpClient getPath:url
+              parameters:@{@"image_id": imageID, @"client_id": [DRPreferences clientID], @"api_key": [DRPreferences APIKey]}
+                 success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                     
+                     id jsonObject = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingAllowFragments error:nil];
+                     NSLog(@"%@", jsonObject);
+                     
+                     NSString *status = jsonObject[@"status"];
+                     if ([status isEqualToString:@"OK"]) {
+                         if (success) success();
+                     } else if ([status isEqualToString:@"ERROR"]) {
+                         if (failure) failure(@"Failed!");
+                     }
+                 }
+                 failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                     NSLog(@"%@", error.localizedDescription);
+                     if (failure) failure(error.localizedDescription);
+                 }];
 }
 
 - (void)rebuildDroplet:(NSNumber *)dropletID
@@ -325,24 +353,24 @@
                failure:(void(^)(NSString *message))failure
 {
     NSString *url = [NSString stringWithFormat:@"droplets/%@/rebuild/", dropletID];
-    [[DRAPIClient sharedInstance] getPath:url
-                               parameters:@{@"image_id": imageID, @"client_id": [DRPreferences clientID], @"api_key": [DRPreferences APIKey]}
-                                  success:^(AFHTTPRequestOperation *operation, id responseObject) {
-                                      
-                                      id jsonObject = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingAllowFragments error:nil];
-                                      NSLog(@"%@", jsonObject);
-                                      
-                                      NSString *status = jsonObject[@"status"];
-                                      if ([status isEqualToString:@"OK"]) {
-                                          if (success) success();
-                                      } else if ([status isEqualToString:@"ERROR"]) {
-                                          if (failure) failure(@"Failed!");
-                                      }
-                                  }
-                                  failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-                                      NSLog(@"error");
-                                      if (failure) failure(error.localizedDescription);
-                                  }];
+    [_httpClient getPath:url
+              parameters:@{@"image_id": imageID, @"client_id": [DRPreferences clientID], @"api_key": [DRPreferences APIKey]}
+                 success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                     
+                     id jsonObject = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingAllowFragments error:nil];
+                     NSLog(@"%@", jsonObject);
+                     
+                     NSString *status = jsonObject[@"status"];
+                     if ([status isEqualToString:@"OK"]) {
+                         if (success) success();
+                     } else if ([status isEqualToString:@"ERROR"]) {
+                         if (failure) failure(@"Failed!");
+                     }
+                 }
+                 failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                     NSLog(@"%@", error.localizedDescription);
+                     if (failure) failure(error.localizedDescription);
+                 }];
 }
 
 - (void)enableAutomaticBackups:(NSNumber *)dropletID
@@ -350,24 +378,24 @@
                        failure:(void(^)(NSString *message))failure
 {
     NSString *url = [NSString stringWithFormat:@"droplets/%@/enable_backups/", dropletID];
-    [[DRAPIClient sharedInstance] getPath:url
-                               parameters:@{@"client_id": [DRPreferences clientID], @"api_key": [DRPreferences APIKey]}
-                                  success:^(AFHTTPRequestOperation *operation, id responseObject) {
-                                      
-                                      id jsonObject = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingAllowFragments error:nil];
-                                      NSLog(@"%@", jsonObject);
-                                      
-                                      NSString *status = jsonObject[@"status"];
-                                      if ([status isEqualToString:@"OK"]) {
-                                          if (success) success();
-                                      } else if ([status isEqualToString:@"ERROR"]) {
-                                          if (failure) failure(@"Failed!");
-                                      }
-                                  }
-                                  failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-                                      NSLog(@"error");
-                                      if (failure) failure(error.localizedDescription);
-                                  }];
+    [_httpClient getPath:url
+              parameters:@{@"client_id": [DRPreferences clientID], @"api_key": [DRPreferences APIKey]}
+                 success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                     
+                     id jsonObject = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingAllowFragments error:nil];
+                     NSLog(@"%@", jsonObject);
+                     
+                     NSString *status = jsonObject[@"status"];
+                     if ([status isEqualToString:@"OK"]) {
+                         if (success) success();
+                     } else if ([status isEqualToString:@"ERROR"]) {
+                         if (failure) failure(@"Failed!");
+                     }
+                 }
+                 failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                     NSLog(@"%@", error.localizedDescription);
+                     if (failure) failure(error.localizedDescription);
+                 }];
 }
 
 - (void)disableAutomaticBackups:(NSNumber *)dropletID
@@ -375,24 +403,24 @@
                         failure:(void(^)(NSString *message))failure
 {
     NSString *url = [NSString stringWithFormat:@"droplets/%@/disable_backups/", dropletID];
-    [[DRAPIClient sharedInstance] getPath:url
-                               parameters:@{@"client_id": [DRPreferences clientID], @"api_key": [DRPreferences APIKey]}
-                                  success:^(AFHTTPRequestOperation *operation, id responseObject) {
-                                      
-                                      id jsonObject = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingAllowFragments error:nil];
-                                      NSLog(@"%@", jsonObject);
-                                      
-                                      NSString *status = jsonObject[@"status"];
-                                      if ([status isEqualToString:@"OK"]) {
-                                          if (success) success();
-                                      } else if ([status isEqualToString:@"ERROR"]) {
-                                          if (failure) failure(@"Failed!");
-                                      }
-                                  }
-                                  failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-                                      NSLog(@"error");
-                                      if (failure) failure(error.localizedDescription);
-                                  }];
+    [_httpClient getPath:url
+              parameters:@{@"client_id": [DRPreferences clientID], @"api_key": [DRPreferences APIKey]}
+                 success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                     
+                     id jsonObject = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingAllowFragments error:nil];
+                     NSLog(@"%@", jsonObject);
+                     
+                     NSString *status = jsonObject[@"status"];
+                     if ([status isEqualToString:@"OK"]) {
+                         if (success) success();
+                     } else if ([status isEqualToString:@"ERROR"]) {
+                         if (failure) failure(@"Failed!");
+                     }
+                 }
+                 failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                     NSLog(@"%@", error.localizedDescription);
+                     if (failure) failure(error.localizedDescription);
+                 }];
 }
 
 - (void)destroyDroplet:(NSNumber *)dropletID
@@ -400,24 +428,24 @@
                failure:(void(^)(NSString *message))failure
 {
     NSString *url = [NSString stringWithFormat:@"droplets/%@/destroy/", dropletID];
-    [[DRAPIClient sharedInstance] getPath:url
-                               parameters:@{@"client_id": [DRPreferences clientID], @"api_key": [DRPreferences APIKey]}
-                                  success:^(AFHTTPRequestOperation *operation, id responseObject) {
-                                      
-                                      id jsonObject = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingAllowFragments error:nil];
-                                      NSLog(@"%@", jsonObject);
-                                      
-                                      NSString *status = jsonObject[@"status"];
-                                      if ([status isEqualToString:@"OK"]) {
-                                          if (success) success();
-                                      } else if ([status isEqualToString:@"ERROR"]) {
-                                          if (failure) failure(@"Failed!");
-                                      }
-                                  }
-                                  failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-                                      NSLog(@"error");
-                                      if (failure) failure(error.localizedDescription);
-                                  }];
+    [_httpClient getPath:url
+              parameters:@{@"client_id": [DRPreferences clientID], @"api_key": [DRPreferences APIKey]}
+                 success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                     
+                     id jsonObject = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingAllowFragments error:nil];
+                     NSLog(@"%@", jsonObject);
+                     
+                     NSString *status = jsonObject[@"status"];
+                     if ([status isEqualToString:@"OK"]) {
+                         if (success) success();
+                     } else if ([status isEqualToString:@"ERROR"]) {
+                         if (failure) failure(@"Failed!");
+                     }
+                 }
+                 failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                     NSLog(@"%@", error.localizedDescription);
+                     if (failure) failure(error.localizedDescription);
+                 }];
 }
 
 @end

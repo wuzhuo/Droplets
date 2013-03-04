@@ -7,16 +7,17 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "DRDroplet.h"
 
 @interface DRDropletService : NSObject
 
 + (DRDropletService *)sharedInstance;
 
-- (void)showAllActiveDroplets:(void(^)(NSArray *array, NSError *error))completion;
+- (void)showAllActiveDropletsSuccess:(void(^)(NSArray *array))success
+                             failure:(void(^)(NSString *message))failure;
 
 - (void)showDropletWithID:(NSString *)dropletID
-               completion:(void(^)(NSDictionary *dict, NSError *error))completion;
+                  success:(void(^)(NSDictionary *dict))success
+                  failure:(void(^)(NSString *message))failure;
 
 - (void)createDropletWithName:(NSString *)name
                        sizeID:(NSNumber *)sizeID

@@ -6,15 +6,11 @@
 //  Copyright (c) 2013 zhuoapps.com. All rights reserved.
 
 #import "DRServiceManager.h"
-
-#define Base_URL @"https://api.digitalocean.com"
+#import "AFHTTPClient.h"
 
 @implementation DRServiceManager
 {
     AFHTTPClient *_httpClient;
-    DRSizeService *_sizeService;
-    DRRegionService *_regionService;
-    DRImageService *_imageService;
 }
 
 + (DRServiceManager *)sharedInstance
@@ -35,9 +31,6 @@
     self = [super init];
     if (self) {
         _httpClient = [[AFHTTPClient alloc] initWithBaseURL:Base_URL.toURL];
-        _sizeService = [[DRSizeService alloc] init];
-        _regionService = [[DRRegionService alloc] init];
-        _imageService = [[DRImageService alloc] init];
     }
     return self;
 }

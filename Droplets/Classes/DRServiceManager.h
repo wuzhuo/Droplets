@@ -6,10 +6,6 @@
 //  Copyright (c) 2013 zhuoapps.com. All rights reserved.
 
 #import <Foundation/Foundation.h>
-#import "AFHTTPClient.h"
-#import "DRSizeService.h"
-#import "DRRegionService.h"
-#import "DRImageService.h"
 
 @interface DRServiceManager : NSObject
 

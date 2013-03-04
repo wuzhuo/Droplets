@@ -109,6 +109,11 @@
         [DRPreferences setAPIKey:nil];
         [DRPreferences save];
         self.tabBarController.selectedIndex = 0;
+        
+        UINavigationController *loginNC = [self.storyboard instantiateInitialViewController];
+        UIWindow* window = [[UIApplication sharedApplication].delegate window];
+        window.rootViewController = loginNC;
+        [window makeKeyAndVisible];
     }
 }
 

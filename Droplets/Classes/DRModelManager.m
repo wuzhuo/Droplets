@@ -16,10 +16,10 @@
 		static dispatch_once_t oncePredicate;
 		dispatch_once(&oncePredicate, ^{
 			_sharedInstance = [[DRModelManager alloc] init];
-   });
-  }
-
-  return _sharedInstance;
+        });
+    }
+    
+    return _sharedInstance;
 }
 
 - (void)processSizeData:(NSArray *)sizeArray
