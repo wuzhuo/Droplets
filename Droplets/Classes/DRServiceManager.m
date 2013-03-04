@@ -35,25 +35,21 @@
     return self;
 }
 
-- (void)validateUserAndDownloadEssentialDataSuccess:(void(^)())success
-                                            failure:(void(^)(NSString *errorMessage))failure
+- (void)validateUserSuccess:(void(^)())success
+         downloadDataFinish:(void(^)())finish
+                    failure:(void(^)(NSString *errorMessage))failure
 {
-#warning TODO
-    success();
-    return;
-    
     if (![DRPreferences clientID] || ![DRPreferences APIKey]) {
         if (failure) failure(@"Client ID & API Key cannot be blank!");
         return;
     }
     
-    [self requestAllSizesSuccess:^{
-        [self requestAllImagesSuccess:^{
-            [self requestAllRegionsSuccess:^{
-                // Check the client id and api key in preferences plist. Both will be nil if those are invalid.
-                if ([DRPreferences clientID] && [DRPreferences APIKey]) {
-                    if (success) success();
-                }
+    [self requestAllRegionsSuccess:^{
+        if (success) success();
+        
+        [self requestAllSizesSuccess:^{
+            [self requestAllImagesSuccess:^{
+                if (finish) finish();
                 
             } failure:^(NSString *message) {
                 if (failure) failure(message);
@@ -97,7 +93,7 @@
                         failure:(void(^)(NSString *message))failure
 {
     [_httpClient getPath:@"images/"
-              parameters:@{@"client_id": [DRPreferences clientID], @"api_key": [DRPreferences APIKey]}
+              parameters:@{@"client_id": [DRPreferences clientID], @"api_key": [DRPreferences APIKey], @"filter": @"global"}
                  success:^(AFHTTPRequestOperation *operation, id responseObject) {
                      
                      id jsonObject = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingAllowFragments error:nil];

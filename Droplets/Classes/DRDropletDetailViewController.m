@@ -64,16 +64,6 @@
     [self.tableView reloadData];
 }
 
-- (void)alertErrorMessage:(NSString *)message
-{
-    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Error"
-                                                        message:message
-                                                       delegate:nil
-                                              cancelButtonTitle:@"OK"
-                                              otherButtonTitles:nil];
-    [alertView show];
-}
-
 #pragma mark - UITableViewDataSource
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -139,35 +129,35 @@
         [[DRDropletService sharedInstance] rebootDroplet:_dropletDict[@"id"] success:^{
             
         } failure:^(NSString *message) {
-            [self alertErrorMessage:message];
+            [UIAlertView alertErrorMessage:message];
         }];
     }
     else if ([operation isEqualToString:@"Power Cycle"]) {
         [[DRDropletService sharedInstance] powerCycleDroplet:_dropletDict[@"id"] success:^{
             
         } failure:^(NSString *message) {
-            [self alertErrorMessage:message];
+            [UIAlertView alertErrorMessage:message];
         }];
     }
     else if ([operation isEqualToString:@"Shutdown"]) {
         [[DRDropletService sharedInstance] shutDownDroplet:_dropletDict[@"id"] success:^{
             
         } failure:^(NSString *message) {
-            [self alertErrorMessage:message];
+            [UIAlertView alertErrorMessage:message];
         }];
     }
     else if ([operation isEqualToString:@"Power Off"]) {
         [[DRDropletService sharedInstance] powerOffDroplet:_dropletDict[@"id"] success:^{
             
         } failure:^(NSString *message) {
-            [self alertErrorMessage:message];
+            [UIAlertView alertErrorMessage:message];
         }];
     }
-    else if ([operation isEqualToString:@"Boost"]) {
+    else if ([operation isEqualToString:@"Boot"]) {
         [[DRDropletService sharedInstance] powerOnDroplet:_dropletDict[@"id"] success:^{
             
         } failure:^(NSString *message) {
-            [self alertErrorMessage:message];
+            [UIAlertView alertErrorMessage:message];
         }];
     }
     
@@ -182,7 +172,7 @@
         [[DRDropletService sharedInstance] resetRootPasswordDroplet:_dropletDict[@"id"] success:^{
             
         } failure:^(NSString *message) {
-            [self alertErrorMessage:message];
+            [UIAlertView alertErrorMessage:message];
         }];
     }
     else if ([operation isEqualToString:@"Resize"]) {
@@ -206,7 +196,7 @@
         [[DRDropletService sharedInstance] destroyDroplet:_dropletDict[@"id"] success:^{
             
         } failure:^(NSString *message) {
-            [self alertErrorMessage:message];
+            [UIAlertView alertErrorMessage:message];
         }];
     }
 }

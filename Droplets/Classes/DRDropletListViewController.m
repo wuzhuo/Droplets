@@ -40,12 +40,6 @@
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
-    __weak DRDropletListViewController *weakSelf = self;
-    
-    [self.tableView addPullToRefreshWithActionHandler:^{
-        [weakSelf reloadData];
-    }];
-    [self.tableView triggerPullToRefresh];
 }
 
 - (void)didReceiveMemoryWarning
@@ -57,6 +51,13 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
+    
+    __weak DRDropletListViewController *weakSelf = self;
+    
+    [self.tableView addPullToRefreshWithActionHandler:^{
+        [weakSelf reloadData];
+    }];
+    [self.tableView triggerPullToRefresh];
 }
 
 #pragma mark - Table view data source

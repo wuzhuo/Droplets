@@ -7,10 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MBProgressHUD.h"
 
-@interface DRLoginViewController : UITableViewController<UITextFieldDelegate>
+@interface DRLoginViewController : UITableViewController<UITextFieldDelegate, MBProgressHUDDelegate>
 
 @property (nonatomic, strong) IBOutlet UITextField *clientIDTextField;
 @property (nonatomic, strong) IBOutlet UITextField *apiKeyTextField;
+@property (nonatomic, strong) MBProgressHUD *hud;
 
 @end

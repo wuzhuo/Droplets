@@ -25,6 +25,8 @@
 		AE7C17D116E15BCC007A30A3 /* DRCreateDropletViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AE7C17D016E15BCC007A30A3 /* DRCreateDropletViewController.m */; };
 		AE7C17D416E15E55007A30A3 /* DROAuthViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AE7C17D316E15E55007A30A3 /* DROAuthViewController.m */; };
 		AE7C17DA16E15F25007A30A3 /* DRSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AE7C17D916E15F23007A30A3 /* DRSettingsViewController.m */; };
+		AE9185DD16E5631F00B2FD5C /* 37x-Checkmark.png in Resources */ = {isa = PBXBuildFile; fileRef = AE9185DB16E5631F00B2FD5C /* 37x-Checkmark.png */; };
+		AE9185DE16E5631F00B2FD5C /* 37x-Checkmark@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AE9185DC16E5631F00B2FD5C /* 37x-Checkmark@2x.png */; };
 		AEDF47D116E0EA5A00CA919E /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AEDF47D016E0EA5A00CA919E /* UIKit.framework */; };
 		AEDF47D316E0EA5A00CA919E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AEDF47D216E0EA5A00CA919E /* Foundation.framework */; };
 		AEDF47D516E0EA5A00CA919E /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AEDF47D416E0EA5A00CA919E /* CoreGraphics.framework */; };
@@ -82,6 +84,8 @@
 		AE7C17D316E15E55007A30A3 /* DROAuthViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DROAuthViewController.m; sourceTree = "<group>"; };
 		AE7C17D816E15F22007A30A3 /* DRSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DRSettingsViewController.h; sourceTree = "<group>"; };
 		AE7C17D916E15F23007A30A3 /* DRSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DRSettingsViewController.m; sourceTree = "<group>"; };
+		AE9185DB16E5631F00B2FD5C /* 37x-Checkmark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "37x-Checkmark.png"; sourceTree = "<group>"; };
+		AE9185DC16E5631F00B2FD5C /* 37x-Checkmark@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "37x-Checkmark@2x.png"; sourceTree = "<group>"; };
 		AEDF47CD16E0EA5A00CA919E /* Droplets.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Droplets.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AEDF47D016E0EA5A00CA919E /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		AEDF47D216E0EA5A00CA919E /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -238,6 +242,8 @@
 		AEDF480416E0EB9200CA919E /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				AE9185DB16E5631F00B2FD5C /* 37x-Checkmark.png */,
+				AE9185DC16E5631F00B2FD5C /* 37x-Checkmark@2x.png */,
 				AE7C17CB16E135D1007A30A3 /* green_light.png */,
 				AE7C17CC16E135D1007A30A3 /* red_light.png */,
 			);
@@ -371,6 +377,8 @@
 				AE7C17CD16E135D1007A30A3 /* green_light.png in Resources */,
 				AE7C17CE16E135D1007A30A3 /* red_light.png in Resources */,
 				AE1A82E516E28AA40018FF2F /* js in Resources */,
+				AE9185DD16E5631F00B2FD5C /* 37x-Checkmark.png in Resources */,
+				AE9185DE16E5631F00B2FD5C /* 37x-Checkmark@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

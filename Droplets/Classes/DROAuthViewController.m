@@ -46,9 +46,7 @@
 - (IBAction)copyButtonPressed:(id)sender
 {
     if ([self parseHTML]) {
-        [self.navigationController dismissViewControllerAnimated:YES completion:^{
-            
-        }];
+        [self.navigationController popViewControllerAnimated:YES];
     }
 }
 

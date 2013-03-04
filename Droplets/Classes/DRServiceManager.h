@@ -14,7 +14,17 @@
 /* Check if the client id and api key are valid.
  * It will try to download essential data such as droplet sizes, region, images, etc.
  */
-- (void)validateUserAndDownloadEssentialDataSuccess:(void(^)())success
-                                            failure:(void(^)(NSString *errorMessage))failure;
+- (void)validateUserSuccess:(void(^)())success
+         downloadDataFinish:(void(^)())finish
+                    failure:(void(^)(NSString *errorMessage))failure;
+
+- (void)requestAllSizesSuccess:(void(^)())success
+                       failure:(void(^)(NSString *message))failure;
+
+- (void)requestAllImagesSuccess:(void(^)())success
+                        failure:(void(^)(NSString *message))failure;
+
+- (void)requestAllRegionsSuccess:(void(^)())success
+                         failure:(void(^)(NSString *message))failure;
 
 @end
