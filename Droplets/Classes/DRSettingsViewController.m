@@ -15,15 +15,6 @@
 
 @implementation DRSettingsViewController
 
-- (id)initWithStyle:(UITableViewStyle)style
-{
-    self = [super initWithStyle:style];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -85,17 +76,21 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
     if (indexPath.section == 0) { // Account
-        if (indexPath.row == 2) { // logout
+        if (indexPath.row == 1) { // Sign out
             
-            UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"Are you sure logout?"
+            UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"Are you sure sign out?"
                                                                      delegate:self
                                                             cancelButtonTitle:@"Cancel"
-                                                       destructiveButtonTitle:@"Logout"
+                                                       destructiveButtonTitle:@"Sign Out"
                                                             otherButtonTitles:nil];
             actionSheet.delegate = self;
             [actionSheet showFromTabBar:self.tabBarController.tabBar];
         }
         
+    } else if (indexPath.section == 1) {
+        if (indexPath.row == 1) { // More Apps
+            [[UIApplication sharedApplication] openURL:More_Apps_URL.toURL];
+        }
     }
     
 }

@@ -11,4 +11,6 @@
 
 #define Base_URL @"https://api.digitalocean.com"
 
+#define More_Apps_URL @"http://appstore.com/zhuowu"
+
 #endif

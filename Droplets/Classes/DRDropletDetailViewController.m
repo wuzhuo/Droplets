@@ -59,9 +59,16 @@
 - (void)reloadData
 {
     if ([_dropletDict[@"status"] isEqualToString:@"active"]) { // when the server is active
-        _operationArray = @[@"Reboot", @"Shutdown", @"Reset Root Password", @"Rebuild", @"Destroy"];
-    } else if ([_dropletDict[@"status"] isEqualToString:@"off"]) {
-        if ([_dropletDict[@"backups_active"] intValue] > 0) {
+        if ([_dropletDict[@"backups_active"] respondsToSelector:@selector(intValue)]
+            && [_dropletDict[@"backups_active"] intValue] > 0) {
+            _operationArray = @[@"Reboot", @"Power Cycle", @"Shutdown", @"Power Off", @"Reset Root Password", @"Disable Automatic Backups", @"Rebuild", @"Destroy"];
+        } else {
+            _operationArray = @[@"Reboot", @"Power Cycle", @"Shutdown", @"Power Off", @"Reset Root Password", @"Enable Automatic Backups", @"Rebuild", @"Destroy"];
+        }
+        
+    } else {
+        if ([_dropletDict[@"backups_active"] respondsToSelector:@selector(intValue)]
+            && [_dropletDict[@"backups_active"] intValue] > 0) {
             _operationArray = @[@"Boot", @"Reset Root Password", @"Resize", @"Disable Automatic Backups", @"Rebuild", @"Destroy"];
         } else {
             _operationArray = @[@"Boot", @"Reset Root Password", @"Resize", @"Enable Automatic Backups", @"Rebuild", @"Destroy"];
@@ -110,6 +117,11 @@
         } else if (indexPath.row == 1) {
             cell.textLabel.text = @"Status";
             cell.detailTextLabel.text = _dropletDict[@"status"];
+            if ([_dropletDict[@"status"] isEqualToString:@"active"]) {
+                cell.detailTextLabel.textColor = [UIColor colorWithRed:0.000 green:0.400 blue:0.000 alpha:1.000];
+            } else {
+                cell.detailTextLabel.textColor = [UIColor colorWithRed:0.600 green:0.000 blue:0.000 alpha:1.000];
+            }
         } else if (indexPath.row == 2) {
             cell.textLabel.text = @"Size";
             cell.detailTextLabel.text = [DRModelManager sharedInstance].sizeDict[_dropletDict[@"size_id"]];

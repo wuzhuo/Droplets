@@ -21,12 +21,7 @@
 
 - (void)awakeFromNib
 {
-    _pickerView = [[DRCustomPickerView alloc] init];
-    _pickerView.bottom = self.view.frame.size.height;
-    _pickerView.dataSource = self;
-    _pickerView.delegate = self;
-    _pickerView.hidden = YES;
-    [self.view addSubview:_pickerView];
+
 }
 
 - (void)viewDidLoad
@@ -63,6 +58,19 @@
         _dropletDict[@"region_id"] = [DRModelManager sharedInstance].sortedRegionDictKeys[0];
     }
     return _dropletDict;
+}
+
+- (DRCustomPickerView *)pickerView
+{
+    if (!_pickerView) {
+        _pickerView = [[DRCustomPickerView alloc] init];
+        _pickerView.bottom = self.view.frame.size.height;
+        _pickerView.dataSource = self;
+        _pickerView.delegate = self;
+        [self.view addSubview:_pickerView];
+    }
+    
+    return _pickerView;
 }
 
 #pragma mark - Actions
@@ -185,7 +193,8 @@
 
 - (void)pickerViewDidEndSelecting:(DRCustomPickerView *)pickerView
 {
-    self.pickerView.hidden = YES;
+    [self.pickerView removeFromSuperview];
+    self.pickerView = nil;
 }
 
 #pragma mark - UITextFieldDelegate

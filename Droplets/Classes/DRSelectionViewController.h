@@ -8,14 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@class DRSelectionViewController;
-
-@protocol DRSelectionViewControllerDelegate <NSObject>
-@optional
-- (void)saveSizeID:(NSNumber *)sizeID;
-- (void)saveImageID:(NSNumber *)imageID;
-@end
-
 @interface DRSelectionViewController : UITableViewController<UIAlertViewDelegate>
 
 @property (nonatomic, strong) NSNumber *dropletID;
