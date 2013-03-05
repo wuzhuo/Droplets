@@ -8,8 +8,8 @@
 
 #import "DRDropletDetailViewController.h"
 #import "DRDropletService.h"
-#import "DRRegionModel.h"
 #import "DRSelectionViewController.h"
+#import "MBProgressHUD.h"
 
 #define Destroy_Confirm_AlertView_Tag 1001
 
@@ -148,45 +148,63 @@
     NSString *operation = cell.textLabel.text;
     
     if ([operation isEqualToString:@"Reboot"]) {
+        __block MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view.window animated:YES];
         [[DRDropletService sharedInstance] rebootDroplet:_dropletDict[@"id"] success:^{
+            [hud hide:NO];
             [self.navigationController popViewControllerAnimated:YES];
         } failure:^(NSString *message) {
+            [hud hide:NO];
             [UIAlertView alertErrorMessage:message];
         }];
     }
     else if ([operation isEqualToString:@"Power Cycle"]) {
+        __block MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view.window animated:YES];
         [[DRDropletService sharedInstance] powerCycleDroplet:_dropletDict[@"id"] success:^{
+            [hud hide:NO];
             [self.navigationController popViewControllerAnimated:YES];
         } failure:^(NSString *message) {
+            [hud hide:NO];
             [UIAlertView alertErrorMessage:message];
         }];
     }
     else if ([operation isEqualToString:@"Shutdown"]) {
+        __block MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view.window animated:YES];
         [[DRDropletService sharedInstance] shutDownDroplet:_dropletDict[@"id"] success:^{
+            [hud hide:NO];
             [self.navigationController popViewControllerAnimated:YES];
         } failure:^(NSString *message) {
+            [hud hide:NO];
             [UIAlertView alertErrorMessage:message];
         }];
     }
     else if ([operation isEqualToString:@"Power Off"]) {
+        __block MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view.window animated:YES];
         [[DRDropletService sharedInstance] powerOffDroplet:_dropletDict[@"id"] success:^{
+            [hud hide:NO];
             [self.navigationController popViewControllerAnimated:YES];
         } failure:^(NSString *message) {
+            [hud hide:NO];
             [UIAlertView alertErrorMessage:message];
         }];
     }
     else if ([operation isEqualToString:@"Boot"]) {
+        __block MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view.window animated:YES];
         [[DRDropletService sharedInstance] powerOnDroplet:_dropletDict[@"id"] success:^{
+            [hud hide:NO];
             [self.navigationController popViewControllerAnimated:YES];
         } failure:^(NSString *message) {
+            [hud hide:NO];
             [UIAlertView alertErrorMessage:message];
         }];
     }
     
     else if ([operation isEqualToString:@"Reset Root Password"]) {
+        __block MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view.window animated:YES];
         [[DRDropletService sharedInstance] resetRootPasswordDroplet:_dropletDict[@"id"] success:^{
+            [hud hide:NO];
             [self.navigationController popViewControllerAnimated:YES];
         } failure:^(NSString *message) {
+            [hud hide:NO];
             [UIAlertView alertErrorMessage:message];
         }];
     }
@@ -210,16 +228,22 @@
     }
     
     else if ([operation isEqualToString:@"Enable Automatic Backups"]) {
+        __block MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view.window animated:YES];
         [[DRDropletService sharedInstance] enableAutomaticBackups:_dropletDict[@"id"] success:^{
+            [hud hide:NO];
             [self.navigationController popViewControllerAnimated:YES];
         } failure:^(NSString *message) {
+            [hud hide:NO];
             [UIAlertView alertErrorMessage:message];
         }];
     }
     else if ([operation isEqualToString:@"Disable Automatic Backups"]) {
+        __block MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view.window animated:YES];
         [[DRDropletService sharedInstance] disableAutomaticBackups:_dropletDict[@"id"] success:^{
+            [hud hide:NO];
             [self.navigationController popViewControllerAnimated:YES];
         } failure:^(NSString *message) {
+            [hud hide:NO];
             [UIAlertView alertErrorMessage:message];
         }];
     }
@@ -237,6 +261,7 @@
         alertView.tag = Destroy_Confirm_AlertView_Tag;
         [alertView show];
     }
+    
 }
 
 #pragma mark - UIAlertViewDelegate
@@ -244,9 +269,12 @@
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     if (buttonIndex == 1 && alertView.tag == Destroy_Confirm_AlertView_Tag) {
+        __block MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view.window animated:YES];
         [[DRDropletService sharedInstance] destroyDroplet:_dropletDict[@"id"] success:^{
+            [hud hide:NO];
             [self.navigationController popViewControllerAnimated:YES];
         } failure:^(NSString *message) {
+            [hud hide:NO];
             [UIAlertView alertErrorMessage:message];
         }];
     }

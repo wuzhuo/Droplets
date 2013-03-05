@@ -8,8 +8,6 @@
 
 #import "DRDropletListViewController.h"
 #import "DRDropletService.h"
-#import "DRSizeService.h"
-#import "DRRegionService.h"
 #import "DRDropletDetailViewController.h"
 #import "DRLoginViewController.h"
 #import "SVPullToRefresh.h"
@@ -17,8 +15,6 @@
 @interface DRDropletListViewController ()
 @property (nonatomic, strong) NSArray *dropletArray;
 @property (nonatomic, strong) DRDropletService *dropletService;
-@property (nonatomic, strong) DRSizeService *sizeService;
-@property (nonatomic, strong) DRRegionService *regionService;
 @end
 
 @implementation DRDropletListViewController
@@ -27,8 +23,6 @@
 {
     _dropletArray = [[NSArray alloc] init];
     _dropletService = [[DRDropletService alloc] init];
-    _sizeService = [[DRSizeService alloc] init];
-    _regionService = [[DRRegionService alloc] init];
 }
 
 - (void)viewDidLoad

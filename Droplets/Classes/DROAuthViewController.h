@@ -7,10 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MBProgressHUD.h"
 
 @interface DROAuthViewController : UIViewController<UIWebViewDelegate>
 
 @property (nonatomic, strong) IBOutlet UIWebView *webView;
+@property (nonatomic, strong) MBProgressHUD *hud;
 
 - (IBAction)copyButtonPressed:(id)sender;
 

@@ -12,6 +12,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    [self startUpCheck];
     // Override point for customization after application launch.
     return YES;
 }
@@ -41,6 +42,13 @@
 - (void)applicationWillTerminate:(UIApplication *)application
 {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+}
+
+#pragma mark - start up check
+
+- (void)startUpCheck
+{
+    [DRPreferences saveCurrentVersion];
 }
 
 @end

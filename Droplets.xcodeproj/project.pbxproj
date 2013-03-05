@@ -12,7 +12,6 @@
 		AE1A82E516E28AA40018FF2F /* js in Resources */ = {isa = PBXBuildFile; fileRef = AE1A82E416E28AA40018FF2F /* js */; };
 		AE1A82E916E2A6B30018FF2F /* DRCustomPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = AE1A82E816E2A6B30018FF2F /* DRCustomPickerView.m */; };
 		AE1A82EE16E2ACCF0018FF2F /* UIView+Frame.m in Sources */ = {isa = PBXBuildFile; fileRef = AE1A82ED16E2ACCF0018FF2F /* UIView+Frame.m */; };
-		AE1A82F116E2AEEF0018FF2F /* DRCustomPickerViewDataSouce.m in Sources */ = {isa = PBXBuildFile; fileRef = AE1A82F016E2AEEF0018FF2F /* DRCustomPickerViewDataSouce.m */; };
 		AE2B881416E6139D003E55CF /* checkmark.png in Resources */ = {isa = PBXBuildFile; fileRef = AE2B880A16E6139D003E55CF /* checkmark.png */; };
 		AE2B881516E6139D003E55CF /* checkmark@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AE2B880B16E6139D003E55CF /* checkmark@2x.png */; };
 		AE2B881616E6139D003E55CF /* green_light.png in Resources */ = {isa = PBXBuildFile; fileRef = AE2B880C16E6139D003E55CF /* green_light.png */; };
@@ -26,12 +25,6 @@
 		AE2B881F16E61556003E55CF /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AE2B881E16E61556003E55CF /* Default@2x.png */; };
 		AE2B882116E61558003E55CF /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = AE2B882016E61558003E55CF /* Default.png */; };
 		AE32E39616E181B500686384 /* DRLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AE32E39516E181B500686384 /* DRLoginViewController.m */; };
-		AE7C17B716E108B6007A30A3 /* DRDroplet.m in Sources */ = {isa = PBXBuildFile; fileRef = AE7C17B616E108B6007A30A3 /* DRDroplet.m */; };
-		AE7C17BA16E11127007A30A3 /* DRSizeService.m in Sources */ = {isa = PBXBuildFile; fileRef = AE7C17B916E11127007A30A3 /* DRSizeService.m */; };
-		AE7C17BD16E111CB007A30A3 /* DRRegionService.m in Sources */ = {isa = PBXBuildFile; fileRef = AE7C17BC16E111CB007A30A3 /* DRRegionService.m */; };
-		AE7C17C016E11654007A30A3 /* DRImageService.m in Sources */ = {isa = PBXBuildFile; fileRef = AE7C17BF16E11653007A30A3 /* DRImageService.m */; };
-		AE7C17C316E11917007A30A3 /* DRRegionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = AE7C17C216E11917007A30A3 /* DRRegionModel.m */; };
-		AE7C17C616E119EC007A30A3 /* DRSizeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = AE7C17C516E119EC007A30A3 /* DRSizeModel.m */; };
 		AE7C17D116E15BCC007A30A3 /* DRCreateDropletViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AE7C17D016E15BCC007A30A3 /* DRCreateDropletViewController.m */; };
 		AE7C17D416E15E55007A30A3 /* DROAuthViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AE7C17D316E15E55007A30A3 /* DROAuthViewController.m */; };
 		AE7C17DA16E15F25007A30A3 /* DRSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AE7C17D916E15F23007A30A3 /* DRSettingsViewController.m */; };
@@ -46,7 +39,6 @@
 		AEDF481A16E0F49F00CA919E /* DRDropletListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AEDF481916E0F49F00CA919E /* DRDropletListViewController.m */; };
 		AEDF481D16E0F4BD00CA919E /* DRDropletDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AEDF481C16E0F4BD00CA919E /* DRDropletDetailViewController.m */; };
 		AEDF482016E0F56600CA919E /* DRDropletService.m in Sources */ = {isa = PBXBuildFile; fileRef = AEDF481F16E0F56600CA919E /* DRDropletService.m */; };
-		AEDF482316E0F6D600CA919E /* DRAPIClient.m in Sources */ = {isa = PBXBuildFile; fileRef = AEDF482216E0F6D600CA919E /* DRAPIClient.m */; };
 		AEDF482916E0FFC200CA919E /* NSString+Extend.m in Sources */ = {isa = PBXBuildFile; fileRef = AEDF482816E0FFC200CA919E /* NSString+Extend.m */; };
 		AEDF483616E1054400CA919E /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AEDF482E16E102A200CA919E /* SystemConfiguration.framework */; };
 		AEDF483716E1054B00CA919E /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AEDF483016E102B000CA919E /* MobileCoreServices.framework */; };
@@ -68,8 +60,6 @@
 		AE1A82E816E2A6B30018FF2F /* DRCustomPickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DRCustomPickerView.m; sourceTree = "<group>"; };
 		AE1A82EC16E2ACCF0018FF2F /* UIView+Frame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Frame.h"; sourceTree = "<group>"; };
 		AE1A82ED16E2ACCF0018FF2F /* UIView+Frame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Frame.m"; sourceTree = "<group>"; };
-		AE1A82EF16E2AEEF0018FF2F /* DRCustomPickerViewDataSouce.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DRCustomPickerViewDataSouce.h; sourceTree = "<group>"; };
-		AE1A82F016E2AEEF0018FF2F /* DRCustomPickerViewDataSouce.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DRCustomPickerViewDataSouce.m; sourceTree = "<group>"; };
 		AE2B880A16E6139D003E55CF /* checkmark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = checkmark.png; sourceTree = "<group>"; };
 		AE2B880B16E6139D003E55CF /* checkmark@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "checkmark@2x.png"; sourceTree = "<group>"; };
 		AE2B880C16E6139D003E55CF /* green_light.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = green_light.png; sourceTree = "<group>"; };
@@ -84,18 +74,6 @@
 		AE2B882016E61558003E55CF /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Default.png; path = ../../Default.png; sourceTree = "<group>"; };
 		AE32E39416E181B400686384 /* DRLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DRLoginViewController.h; sourceTree = "<group>"; };
 		AE32E39516E181B500686384 /* DRLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DRLoginViewController.m; sourceTree = "<group>"; };
-		AE7C17B516E108B6007A30A3 /* DRDroplet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DRDroplet.h; sourceTree = "<group>"; };
-		AE7C17B616E108B6007A30A3 /* DRDroplet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DRDroplet.m; sourceTree = "<group>"; };
-		AE7C17B816E11127007A30A3 /* DRSizeService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DRSizeService.h; sourceTree = "<group>"; };
-		AE7C17B916E11127007A30A3 /* DRSizeService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DRSizeService.m; sourceTree = "<group>"; };
-		AE7C17BB16E111CB007A30A3 /* DRRegionService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DRRegionService.h; sourceTree = "<group>"; };
-		AE7C17BC16E111CB007A30A3 /* DRRegionService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DRRegionService.m; sourceTree = "<group>"; };
-		AE7C17BE16E11653007A30A3 /* DRImageService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DRImageService.h; sourceTree = "<group>"; };
-		AE7C17BF16E11653007A30A3 /* DRImageService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DRImageService.m; sourceTree = "<group>"; };
-		AE7C17C116E11917007A30A3 /* DRRegionModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DRRegionModel.h; sourceTree = "<group>"; };
-		AE7C17C216E11917007A30A3 /* DRRegionModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DRRegionModel.m; sourceTree = "<group>"; };
-		AE7C17C416E119EC007A30A3 /* DRSizeModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DRSizeModel.h; sourceTree = "<group>"; };
-		AE7C17C516E119EC007A30A3 /* DRSizeModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DRSizeModel.m; sourceTree = "<group>"; };
 		AE7C17CF16E15BCC007A30A3 /* DRCreateDropletViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DRCreateDropletViewController.h; sourceTree = "<group>"; };
 		AE7C17D016E15BCC007A30A3 /* DRCreateDropletViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DRCreateDropletViewController.m; sourceTree = "<group>"; };
 		AE7C17D216E15E54007A30A3 /* DROAuthViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DROAuthViewController.h; sourceTree = "<group>"; };
@@ -123,8 +101,6 @@
 		AEDF481C16E0F4BD00CA919E /* DRDropletDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DRDropletDetailViewController.m; sourceTree = "<group>"; };
 		AEDF481E16E0F56600CA919E /* DRDropletService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DRDropletService.h; sourceTree = "<group>"; };
 		AEDF481F16E0F56600CA919E /* DRDropletService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DRDropletService.m; sourceTree = "<group>"; };
-		AEDF482116E0F6D600CA919E /* DRAPIClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DRAPIClient.h; sourceTree = "<group>"; };
-		AEDF482216E0F6D600CA919E /* DRAPIClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DRAPIClient.m; sourceTree = "<group>"; };
 		AEDF482716E0FFC200CA919E /* NSString+Extend.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Extend.h"; sourceTree = "<group>"; };
 		AEDF482816E0FFC200CA919E /* NSString+Extend.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Extend.m"; sourceTree = "<group>"; };
 		AEDF482A16E1004900CA919E /* Categories.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Categories.h; sourceTree = "<group>"; };
@@ -160,8 +136,6 @@
 			children = (
 				AE1A82E716E2A6B30018FF2F /* DRCustomPickerView.h */,
 				AE1A82E816E2A6B30018FF2F /* DRCustomPickerView.m */,
-				AE1A82EF16E2AEEF0018FF2F /* DRCustomPickerViewDataSouce.h */,
-				AE1A82F016E2AEEF0018FF2F /* DRCustomPickerViewDataSouce.m */,
 			);
 			name = Custom;
 			sourceTree = "<group>";
@@ -169,12 +143,6 @@
 		AE7C17B416E1089B007A30A3 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				AE7C17B516E108B6007A30A3 /* DRDroplet.h */,
-				AE7C17B616E108B6007A30A3 /* DRDroplet.m */,
-				AE7C17C116E11917007A30A3 /* DRRegionModel.h */,
-				AE7C17C216E11917007A30A3 /* DRRegionModel.m */,
-				AE7C17C416E119EC007A30A3 /* DRSizeModel.h */,
-				AE7C17C516E119EC007A30A3 /* DRSizeModel.m */,
 				AE1A82D916E269BE0018FF2F /* DRModelManager.h */,
 				AE1A82DA16E269BE0018FF2F /* DRModelManager.m */,
 			);
@@ -314,18 +282,10 @@
 		AEDF481516E0F24D00CA919E /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				AEDF482116E0F6D600CA919E /* DRAPIClient.h */,
-				AEDF482216E0F6D600CA919E /* DRAPIClient.m */,
 				AEDF481E16E0F56600CA919E /* DRDropletService.h */,
 				AEDF481F16E0F56600CA919E /* DRDropletService.m */,
-				AE7C17BE16E11653007A30A3 /* DRImageService.h */,
-				AE7C17BF16E11653007A30A3 /* DRImageService.m */,
-				AE7C17BB16E111CB007A30A3 /* DRRegionService.h */,
-				AE7C17BC16E111CB007A30A3 /* DRRegionService.m */,
 				AE1A82D616E256700018FF2F /* DRServiceManager.h */,
 				AE1A82D716E256700018FF2F /* DRServiceManager.m */,
-				AE7C17B816E11127007A30A3 /* DRSizeService.h */,
-				AE7C17B916E11127007A30A3 /* DRSizeService.m */,
 			);
 			name = Services;
 			sourceTree = "<group>";
@@ -444,14 +404,7 @@
 				AEDF481A16E0F49F00CA919E /* DRDropletListViewController.m in Sources */,
 				AEDF481D16E0F4BD00CA919E /* DRDropletDetailViewController.m in Sources */,
 				AEDF482016E0F56600CA919E /* DRDropletService.m in Sources */,
-				AEDF482316E0F6D600CA919E /* DRAPIClient.m in Sources */,
 				AEDF482916E0FFC200CA919E /* NSString+Extend.m in Sources */,
-				AE7C17B716E108B6007A30A3 /* DRDroplet.m in Sources */,
-				AE7C17BA16E11127007A30A3 /* DRSizeService.m in Sources */,
-				AE7C17BD16E111CB007A30A3 /* DRRegionService.m in Sources */,
-				AE7C17C016E11654007A30A3 /* DRImageService.m in Sources */,
-				AE7C17C316E11917007A30A3 /* DRRegionModel.m in Sources */,
-				AE7C17C616E119EC007A30A3 /* DRSizeModel.m in Sources */,
 				AE7C17D116E15BCC007A30A3 /* DRCreateDropletViewController.m in Sources */,
 				AE7C17D416E15E55007A30A3 /* DROAuthViewController.m in Sources */,
 				AE7C17DA16E15F25007A30A3 /* DRSettingsViewController.m in Sources */,
@@ -460,7 +413,6 @@
 				AE1A82DB16E269BE0018FF2F /* DRModelManager.m in Sources */,
 				AE1A82E916E2A6B30018FF2F /* DRCustomPickerView.m in Sources */,
 				AE1A82EE16E2ACCF0018FF2F /* UIView+Frame.m in Sources */,
-				AE1A82F116E2AEEF0018FF2F /* DRCustomPickerViewDataSouce.m in Sources */,
 				AEF5B3DD16E3F724005AD706 /* DRSelectionViewController.m in Sources */,
 				AEF5B3E216E41C16005AD706 /* UIAlertView+Custom.m in Sources */,
 			);

@@ -8,6 +8,7 @@
 
 #import "DRSelectionViewController.h"
 #import "DRDropletService.h"
+#import "MBProgressHUD.h"
 
 #define Size_Save_AlertView_Tag 1001
 #define Image_Save_AlertView_Tag 1002
@@ -80,10 +81,14 @@
 {
     if ([self.title isEqualToString:@"Sizes"]) {
         NSNumber *sizeID = [DRModelManager sharedInstance].reversedSizeDict[_selectedString];
+        
+        __block MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view.window animated:YES];
         [[DRDropletService sharedInstance] resizeDroplet:_dropletID sizeID:sizeID success:^{
+            [hud hide:NO];
             [self.navigationController popToRootViewControllerAnimated:YES];
             
         } failure:^(NSString *message) {
+            [hud hide:NO];
             [UIAlertView alertErrorMessage:message];
         }];
         
@@ -100,10 +105,14 @@
 {
     if (buttonIndex == 1 && alertView.tag == Image_Save_AlertView_Tag) {
         NSNumber *imageID = [DRModelManager sharedInstance].reversedImageDict[_selectedString];
+        
+        __block MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view.window animated:YES];
         [[DRDropletService sharedInstance] rebuildDroplet:_dropletID imageID:imageID success:^{
+            [hud hide:NO];
             [self.navigationController popToRootViewControllerAnimated:YES];
             
         } failure:^(NSString *message) {
+            [hud hide:NO];
             [UIAlertView alertErrorMessage:message];
         }];
     }

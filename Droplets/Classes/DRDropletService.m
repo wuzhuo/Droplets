@@ -135,7 +135,7 @@
                      if ([status isEqualToString:@"OK"]) {
                          if (success) success();
                      } else if ([status isEqualToString:@"ERROR"]) {
-                         if (failure) failure(@"Failed!");
+                         if (failure) failure(jsonObject[@"error_message"]);
                      }
                  }
                  failure:^(AFHTTPRequestOperation *operation, NSError *error) {
@@ -160,7 +160,7 @@
                      if ([status isEqualToString:@"OK"]) {
                          if (success) success();
                      } else if ([status isEqualToString:@"ERROR"]) {
-                         if (failure) failure(@"Failed!");
+                         if (failure) failure(jsonObject[@"error_message"]);
                      }
                  }
                  failure:^(AFHTTPRequestOperation *operation, NSError *error) {
@@ -185,7 +185,7 @@
                      if ([status isEqualToString:@"OK"]) {
                          if (success) success();
                      } else if ([status isEqualToString:@"ERROR"]) {
-                         if (failure) failure(@"Failed!");
+                         if (failure) failure(jsonObject[@"error_message"]);
                      }
                  }
                  failure:^(AFHTTPRequestOperation *operation, NSError *error) {
@@ -210,7 +210,7 @@
                      if ([status isEqualToString:@"OK"]) {
                          if (success) success();
                      } else if ([status isEqualToString:@"ERROR"]) {
-                         if (failure) failure(@"Failed!");
+                         if (failure) failure(jsonObject[@"error_message"]);
                      }
                  }
                  failure:^(AFHTTPRequestOperation *operation, NSError *error) {
@@ -235,7 +235,7 @@
                      if ([status isEqualToString:@"OK"]) {
                          if (success) success();
                      } else if ([status isEqualToString:@"ERROR"]) {
-                         if (failure) failure(@"Failed!");
+                         if (failure) failure(jsonObject[@"error_message"]);
                      }
                  }
                  failure:^(AFHTTPRequestOperation *operation, NSError *error) {
@@ -260,7 +260,7 @@
                      if ([status isEqualToString:@"OK"]) {
                          if (success) success();
                      } else if ([status isEqualToString:@"ERROR"]) {
-                         if (failure) failure(@"Failed!");
+                         if (failure) failure(jsonObject[@"error_message"]);
                      }
                  }
                  failure:^(AFHTTPRequestOperation *operation, NSError *error) {
@@ -286,7 +286,7 @@
                      if ([status isEqualToString:@"OK"]) {
                          if (success) success();
                      } else if ([status isEqualToString:@"ERROR"]) {
-                         if (failure) failure(@"Failed!");
+                         if (failure) failure(jsonObject[@"error_message"]);
                      }
                  }
                  failure:^(AFHTTPRequestOperation *operation, NSError *error) {
@@ -312,7 +312,7 @@
                      if ([status isEqualToString:@"OK"]) {
                          if (success) success();
                      } else if ([status isEqualToString:@"ERROR"]) {
-                         if (failure) failure(@"Failed!");
+                         if (failure) failure(jsonObject[@"error_message"]);
                      }
                  }
                  failure:^(AFHTTPRequestOperation *operation, NSError *error) {
@@ -338,7 +338,7 @@
                      if ([status isEqualToString:@"OK"]) {
                          if (success) success();
                      } else if ([status isEqualToString:@"ERROR"]) {
-                         if (failure) failure(@"Failed!");
+                         if (failure) failure(jsonObject[@"error_message"]);
                      }
                  }
                  failure:^(AFHTTPRequestOperation *operation, NSError *error) {
@@ -364,7 +364,7 @@
                      if ([status isEqualToString:@"OK"]) {
                          if (success) success();
                      } else if ([status isEqualToString:@"ERROR"]) {
-                         if (failure) failure(@"Failed!");
+                         if (failure) failure(jsonObject[@"error_message"]);
                      }
                  }
                  failure:^(AFHTTPRequestOperation *operation, NSError *error) {
@@ -389,7 +389,7 @@
                      if ([status isEqualToString:@"OK"]) {
                          if (success) success();
                      } else if ([status isEqualToString:@"ERROR"]) {
-                         if (failure) failure(@"Failed!");
+                         if (failure) failure(jsonObject[@"error_message"]);
                      }
                  }
                  failure:^(AFHTTPRequestOperation *operation, NSError *error) {
@@ -414,7 +414,7 @@
                      if ([status isEqualToString:@"OK"]) {
                          if (success) success();
                      } else if ([status isEqualToString:@"ERROR"]) {
-                         if (failure) failure(@"Failed!");
+                         if (failure) failure(jsonObject[@"error_message"]);
                      }
                  }
                  failure:^(AFHTTPRequestOperation *operation, NSError *error) {
@@ -439,7 +439,7 @@
                      if ([status isEqualToString:@"OK"]) {
                          if (success) success();
                      } else if ([status isEqualToString:@"ERROR"]) {
-                         if (failure) failure(@"Failed!");
+                         if (failure) failure(jsonObject[@"error_message"]);
                      }
                  }
                  failure:^(AFHTTPRequestOperation *operation, NSError *error) {

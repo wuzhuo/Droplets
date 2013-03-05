@@ -8,6 +8,7 @@
 
 #import "DRCreateDropletViewController.h"
 #import "DRDropletService.h"
+#import "MBProgressHUD.h"
 
 #define Size_Picker_View_Tag 1001
 #define Image_Picker_View_Tag 1002
@@ -112,16 +113,18 @@
     
     NSNumber *sizeID = [DRModelManager sharedInstance].reversedSizeDict[_dropletDict[@"size"]];
     NSNumber *imageID = [DRModelManager sharedInstance].reversedImageDict[_dropletDict[@"image"]];
-
+    
+    __block MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view.window animated:YES];
     [[DRDropletService sharedInstance] createDropletWithName:_dropletDict[@"name"]
                                                       sizeID:sizeID
                                                      imageID:imageID
                                                     regionID:_dropletDict[@"region_id"]
                                                      success:^(NSDictionary *dict) {
+                                                         [hud hide:NO];
                                                          [self dismissViewControllerAnimated:YES completion:nil];
                                                      } failure:^(NSString *message) {
-                                                         UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Failure" message:message delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
-                                                         [alertView show];
+                                                         [hud hide:NO];
+                                                         [UIAlertView alertErrorMessage:message];
                                                      }];
 }
 

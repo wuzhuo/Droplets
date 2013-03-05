@@ -40,7 +40,24 @@
         [webView loadRequest:[NSURLRequest requestWithURL:Generate_API_Key_URL.toURL]];
         return NO;
     }
+    
+    if (!_hud) {
+        self.hud = [MBProgressHUD showHUDAddedTo:self.webView animated:YES];
+    } else {
+        [self.hud show:YES];
+    }
+    
     return YES;
+}
+
+- (void)webViewDidFinishLoad:(UIWebView *)webView
+{
+    [self.hud hide:NO];
+}
+
+- (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error
+{
+    [self.hud hide:NO];
 }
 
 - (IBAction)copyButtonPressed:(id)sender
