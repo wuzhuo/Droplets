@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface DRDropletDetailViewController : UITableViewController
+@interface DRDropletDetailViewController : UITableViewController<UIAlertViewDelegate>
 
 @property (nonatomic, strong) NSDictionary *dropletDict;
 

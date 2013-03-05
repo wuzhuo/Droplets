@@ -7,6 +7,10 @@
 //
 
 #import "DRSelectionViewController.h"
+#import "DRDropletService.h"
+
+#define Size_Save_AlertView_Tag 1001
+#define Image_Save_AlertView_Tag 1002
 
 @interface DRSelectionViewController ()
 
@@ -17,10 +21,10 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
+    
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
- 
+    
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
@@ -74,10 +78,18 @@
 
 - (IBAction)saveButtonPressed:(id)sender
 {
-    if ([self.title isEqualToString:@"Size"]) {
+    if ([self.title isEqualToString:@"Sizes"]) {
+        NSNumber *sizeID = [DRModelManager sharedInstance].reversedSizeDict[_selectedString];
+        [[DRDropletService sharedInstance] resizeDroplet:_dropletID sizeID:sizeID success:^{
+            [self.navigationController popToRootViewControllerAnimated:YES];
+            
+        } failure:^(NSString *message) {
+            [UIAlertView alertErrorMessage:message];
+        }];
         
-    } else if ([self.title isEqualToString:@"Image"]) {
-        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Attention" message:@"This will rebuild your droplet using the original image you specified when you deployed. Please be advised that all data will be lost." delegate:self cancelButtonTitle:@"Close" otherButtonTitles:@"Rebuild", nil];
+    } else if ([self.title isEqualToString:@"Images"]) {
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Attention" message:@"This will rebuild your droplet using the original image you specified when you deployed. Please be advised that all data will be lost." delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Rebuild", nil];
+        alertView.tag = Image_Save_AlertView_Tag;
         [alertView show];
     }
 }
@@ -86,7 +98,15 @@
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-    
+    if (buttonIndex == 1 && alertView.tag == Image_Save_AlertView_Tag) {
+        NSNumber *imageID = [DRModelManager sharedInstance].reversedImageDict[_selectedString];
+        [[DRDropletService sharedInstance] rebuildDroplet:_dropletID imageID:imageID success:^{
+            [self.navigationController popToRootViewControllerAnimated:YES];
+            
+        } failure:^(NSString *message) {
+            [UIAlertView alertErrorMessage:message];
+        }];
+    }
 }
 
 @end

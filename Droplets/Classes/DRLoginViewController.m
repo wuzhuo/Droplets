@@ -67,7 +67,7 @@
         _hud.labelText = @"Completed";
         _hud.customView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"37x-Checkmark"]];
         _hud.mode = MBProgressHUDModeCustomView;
-        [_hud hide:YES afterDelay:1.8];
+        [_hud hide:YES afterDelay:1.5];
         
         [self performSelector:@selector(showDropletList) withObject:nil afterDelay:2.0];
         
