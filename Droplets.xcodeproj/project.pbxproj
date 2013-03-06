@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AE034FF916E640DA0063F795 /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AE034FF816E640DA0063F795 /* Icon@2x.png */; };
+		AE034FFB16E640DC0063F795 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = AE034FFA16E640DC0063F795 /* Icon.png */; };
 		AE1A82D816E256700018FF2F /* DRServiceManager.m in Sources */ = {isa = PBXBuildFile; fileRef = AE1A82D716E256700018FF2F /* DRServiceManager.m */; };
 		AE1A82DB16E269BE0018FF2F /* DRModelManager.m in Sources */ = {isa = PBXBuildFile; fileRef = AE1A82DA16E269BE0018FF2F /* DRModelManager.m */; };
 		AE1A82E516E28AA40018FF2F /* js in Resources */ = {isa = PBXBuildFile; fileRef = AE1A82E416E28AA40018FF2F /* js */; };
@@ -25,6 +27,7 @@
 		AE2B881F16E61556003E55CF /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AE2B881E16E61556003E55CF /* Default@2x.png */; };
 		AE2B882116E61558003E55CF /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = AE2B882016E61558003E55CF /* Default.png */; };
 		AE32E39616E181B500686384 /* DRLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AE32E39516E181B500686384 /* DRLoginViewController.m */; };
+		AE76243D16E74CF600F9C956 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AE76243C16E74CF600F9C956 /* Default-568h@2x.png */; };
 		AE7C17D116E15BCC007A30A3 /* DRCreateDropletViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AE7C17D016E15BCC007A30A3 /* DRCreateDropletViewController.m */; };
 		AE7C17D416E15E55007A30A3 /* DROAuthViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AE7C17D316E15E55007A30A3 /* DROAuthViewController.m */; };
 		AE7C17DA16E15F25007A30A3 /* DRSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AE7C17D916E15F23007A30A3 /* DRSettingsViewController.m */; };
@@ -51,6 +54,8 @@
 /* Begin PBXFileReference section */
 		2D77937147364B5E9C2BACF4 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = SOURCE_ROOT; };
 		8C70BB991A3C4E58871CB8C8 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		AE034FF816E640DA0063F795 /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon@2x.png"; path = "../../Icon@2x.png"; sourceTree = "<group>"; };
+		AE034FFA16E640DC0063F795 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Icon.png; path = ../../Icon.png; sourceTree = "<group>"; };
 		AE1A82D616E256700018FF2F /* DRServiceManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DRServiceManager.h; sourceTree = "<group>"; };
 		AE1A82D716E256700018FF2F /* DRServiceManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DRServiceManager.m; sourceTree = "<group>"; };
 		AE1A82D916E269BE0018FF2F /* DRModelManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DRModelManager.h; sourceTree = "<group>"; };
@@ -74,6 +79,7 @@
 		AE2B882016E61558003E55CF /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Default.png; path = ../../Default.png; sourceTree = "<group>"; };
 		AE32E39416E181B400686384 /* DRLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DRLoginViewController.h; sourceTree = "<group>"; };
 		AE32E39516E181B500686384 /* DRLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DRLoginViewController.m; sourceTree = "<group>"; };
+		AE76243C16E74CF600F9C956 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-568h@2x.png"; path = "../../Default-568h@2x.png"; sourceTree = "<group>"; };
 		AE7C17CF16E15BCC007A30A3 /* DRCreateDropletViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DRCreateDropletViewController.h; sourceTree = "<group>"; };
 		AE7C17D016E15BCC007A30A3 /* DRCreateDropletViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DRCreateDropletViewController.m; sourceTree = "<group>"; };
 		AE7C17D216E15E54007A30A3 /* DROAuthViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DROAuthViewController.h; sourceTree = "<group>"; };
@@ -226,12 +232,15 @@
 		AEDF480416E0EB9200CA919E /* Images */ = {
 			isa = PBXGroup;
 			children = (
-				AE2B882016E61558003E55CF /* Default.png */,
-				AE2B881E16E61556003E55CF /* Default@2x.png */,
 				AE2B880A16E6139D003E55CF /* checkmark.png */,
 				AE2B880B16E6139D003E55CF /* checkmark@2x.png */,
+				AE76243C16E74CF600F9C956 /* Default-568h@2x.png */,
+				AE2B882016E61558003E55CF /* Default.png */,
+				AE2B881E16E61556003E55CF /* Default@2x.png */,
 				AE2B880C16E6139D003E55CF /* green_light.png */,
 				AE2B880D16E6139D003E55CF /* green_light@2x.png */,
+				AE034FFA16E640DC0063F795 /* Icon.png */,
+				AE034FF816E640DA0063F795 /* Icon@2x.png */,
 				AE2B880E16E6139D003E55CF /* red_light.png */,
 				AE2B880F16E6139D003E55CF /* red_light@2x.png */,
 				AE2B881016E6139D003E55CF /* tabbar_droplet.png */,
@@ -371,6 +380,9 @@
 				AE2B881D16E6139D003E55CF /* tabbar_setting@2x.png in Resources */,
 				AE2B881F16E61556003E55CF /* Default@2x.png in Resources */,
 				AE2B882116E61558003E55CF /* Default.png in Resources */,
+				AE034FF916E640DA0063F795 /* Icon@2x.png in Resources */,
+				AE034FFB16E640DC0063F795 /* Icon.png in Resources */,
+				AE76243D16E74CF600F9C956 /* Default-568h@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
