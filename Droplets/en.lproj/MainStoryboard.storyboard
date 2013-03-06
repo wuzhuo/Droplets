@@ -660,47 +660,6 @@
         <image name="tabbar_droplet.png" width="60" height="60"/>
         <image name="tabbar_setting.png" width="60" height="60"/>
     </resources>
-    <classes>
-        <class className="DRCreateDropletViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/DRCreateDropletViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="cancelButtonPressed:"/>
-                <relationship kind="outlet" name="imageLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="nameLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="regionLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="sizeLabel" candidateClass="UILabel"/>
-            </relationships>
-        </class>
-        <class className="DRDropletDetailViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/DRDropletDetailViewController.h"/>
-        </class>
-        <class className="DRDropletListViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/DRDropletListViewController.h"/>
-        </class>
-        <class className="DRLoginViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/DRLoginViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="apiKeyTextField" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="clientIDTextField" candidateClass="UITextField"/>
-            </relationships>
-        </class>
-        <class className="DROAuthViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/DROAuthViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="copyButtonPressed:"/>
-                <relationship kind="outlet" name="webView" candidateClass="UIWebView"/>
-            </relationships>
-        </class>
-        <class className="DRSelectionViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/DRSelectionViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="saveButtonPressed:"/>
-            </relationships>
-        </class>
-        <class className="DRSettingsViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/DRSettingsViewController.h"/>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

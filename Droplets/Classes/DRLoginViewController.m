@@ -55,6 +55,8 @@
     
     if (!_hud) {
         self.hud = [MBProgressHUD showHUDAddedTo:self.view.window animated:YES];
+    } else {
+        [self.hud show:YES];
     }
     _hud.dimBackground = YES;
     _hud.delegate = self;
