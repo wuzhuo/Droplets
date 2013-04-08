@@ -9,25 +9,35 @@
 #import "DRCreateDropletViewController.h"
 #import "DRDropletService.h"
 #import "MBProgressHUD.h"
+#import "DRSelectionViewController.h"
 
 #define Size_Picker_View_Tag 1001
-#define Image_Picker_View_Tag 1002
-#define Region_Picker_View_Tag 1003
+#define Region_Picker_View_Tag 1002
+
+#define Image_Picker_View_Tag 1003
 
 @interface DRCreateDropletViewController ()
 @property (nonatomic, strong) NSMutableDictionary *dropletDict;
 @end
 
 @implementation DRCreateDropletViewController
-
-- (void)awakeFromNib
 {
-
+    NSArray *_sizeArray;
+    NSArray *_regionArray;
+    NSArray *_imageArray;
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    NSFetchRequest *sizeFetchRequset = [DRSize fetchRequest:[DRSize fetchRequestAll] orderByKey:@"size" ascending:YES];
+    _sizeArray = [DRSize objectsWithFetchRequest:sizeFetchRequset];
+    
+    NSFetchRequest *regionFetchRequset = [DRRegion fetchRequest:[DRRegion fetchRequestAll] orderByKey:@"regionID" ascending:YES];
+    _regionArray = [DRRegion objectsWithFetchRequest:regionFetchRequset];
+    
+    _imageArray = [DRImage allObjects];
     
     [self reloadDropletInfo];
 }
@@ -54,9 +64,9 @@
     if (!_dropletDict) {
         _dropletDict = [[NSMutableDictionary alloc] initWithCapacity:4];
         _dropletDict[@"name"] = @"";
-        _dropletDict[@"size"] = [DRModelManager sharedInstance].sortedReversedSizeDictKeys[0];
-        _dropletDict[@"image"] = [DRModelManager sharedInstance].sortedReversedImageDictKeys[0];
-        _dropletDict[@"region_id"] = [DRModelManager sharedInstance].sortedRegionDictKeys[0];
+        _dropletDict[@"size"] = _sizeArray[0];
+        _dropletDict[@"image"] = _imageArray[0];
+        _dropletDict[@"region"] = _regionArray[0];
     }
     return _dropletDict;
 }
@@ -84,10 +94,9 @@
 - (void)reloadDropletInfo
 {
     self.nameLabel.text = self.dropletDict[@"name"];
-    self.sizeLabel.text = self.dropletDict[@"size"];
-    self.imageLabel.text = self.dropletDict[@"image"];;
-    NSDictionary *regionDict = [DRModelManager sharedInstance].regionDict;
-    self.regionLabel.text = regionDict[self.dropletDict[@"region_id"]];
+    self.sizeLabel.text = [self.dropletDict[@"size"] name];
+    self.imageLabel.text = [self.dropletDict[@"image"] name];
+    self.regionLabel.text = [self.dropletDict[@"region"] name];
     [self.tableView reloadData];
 }
 
@@ -139,9 +148,14 @@
             if (indexPath.row == 1) {
                 self.pickerView.tag = Size_Picker_View_Tag;
             } else if (indexPath.row == 2) {
-                self.pickerView.tag = Image_Picker_View_Tag;
-            } else if (indexPath.row == 3) {
                 self.pickerView.tag = Region_Picker_View_Tag;
+            } else if (indexPath.row == 3) {
+                DRSelectionViewController *selectionVC = [self.storyboard instantiateViewControllerWithIdentifier:@"DRSelectionViewController"];
+                selectionVC.dropletID = _dropletDict[@"id"];
+                selectionVC.selectionArray = [DRModelManager sharedInstance].sortedReversedImageDictKeys;
+                selectionVC.selectedString = [DRModelManager sharedInstance].imageDict[_dropletDict[@"image_id"]];
+                selectionVC.title = @"Images";
+                [self.navigationController pushViewController:selectionVC animated:YES];
             }
             self.pickerView.hidden = NO;
             [self.pickerView reloadData];
@@ -157,11 +171,9 @@
 - (NSInteger)numberOfRowsInPickerView:(DRCustomPickerView *)pickerView
 {
     if (pickerView.tag == Size_Picker_View_Tag) {
-        return [DRModelManager sharedInstance].sizeDict.count;
-    } else if (pickerView.tag == Image_Picker_View_Tag) {
-        return [DRModelManager sharedInstance].imageDict.count;
+        return _sizeArray.count;
     } else if (pickerView.tag == Region_Picker_View_Tag) {
-        return [DRModelManager sharedInstance].regionDict.count;
+        return _regionArray.count;
     }
     return 0;
 }
@@ -169,13 +181,11 @@
 - (NSString *)pickerView:(DRCustomPickerView *)pickerView titleForRow:(NSInteger)row
 {
     if (pickerView.tag == Size_Picker_View_Tag) {
-        return [DRModelManager sharedInstance].sortedReversedSizeDictKeys[row];
-    } else if (pickerView.tag == Image_Picker_View_Tag) {
-        return [DRModelManager sharedInstance].sortedReversedImageDictKeys[row];
+        DRSize *size = _sizeArray[row];
+        return size.name;
     } else if (pickerView.tag == Region_Picker_View_Tag) {
-        NSDictionary *dict = [DRModelManager sharedInstance].regionDict;
-        id key = [DRModelManager sharedInstance].sortedRegionDictKeys[row];
-        return dict[key];
+        DRRegion *region = _regionArray[row];
+        return region.name;
     }
     return nil;
 }
@@ -185,11 +195,9 @@
 - (void)pickerView:(DRCustomPickerView *)pickerView didSelectRow:(NSInteger)row
 {
     if (pickerView.tag == Size_Picker_View_Tag) {
-        self.dropletDict[@"size"] = [DRModelManager sharedInstance].sortedReversedSizeDictKeys[row];
-    } else if (pickerView.tag == Image_Picker_View_Tag) {
-        self.dropletDict[@"image"] = [DRModelManager sharedInstance].sortedReversedImageDictKeys[row];
+        self.dropletDict[@"size"] = _sizeArray[row];
     } else if (pickerView.tag == Region_Picker_View_Tag) {
-        self.dropletDict[@"region_id"] = [DRModelManager sharedInstance].sortedRegionDictKeys[row];
+        self.dropletDict[@"region"] = _regionArray[row];
     }
     [self reloadDropletInfo];
 }

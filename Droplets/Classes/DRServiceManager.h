@@ -6,6 +6,10 @@
 //  Copyright (c) 2013 zhuoapps.com. All rights reserved.
 
 #import <Foundation/Foundation.h>
+#import "DRObjectStore.h"
+#import "DRImage.h"
+#import "DRRegion.h"
+#import "DRSize.h"
 
 @interface DRServiceManager : NSObject
 
@@ -23,6 +27,10 @@
 
 - (void)requestAllImagesSuccess:(void(^)())success
                         failure:(void(^)(NSString *message))failure;
+
+- (void)requestAllImagesType:(DRImageType)imageType
+                   onSuccess:(void(^)())success
+                     failure:(void(^)(NSString *message))failure;
 
 - (void)requestAllRegionsSuccess:(void(^)())success
                          failure:(void(^)(NSString *message))failure;

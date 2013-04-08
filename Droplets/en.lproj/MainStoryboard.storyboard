@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="12C60" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="c8q-uv-irb">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="12D78" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="c8q-uv-irb">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="2083"/>
     </dependencies>
@@ -136,7 +136,7 @@
                                             <rect key="frame" x="10" y="0.0" width="280" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Image" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="nxg-GZ-xeo">
+                                                <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Region" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="nxg-GZ-xeo">
                                                     <rect key="frame" x="10" y="15" width="67" height="15"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
@@ -161,7 +161,7 @@
                                             <rect key="frame" x="10" y="0.0" width="280" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Region" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="JUd-Po-qXY">
+                                                <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Image" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="JUd-Po-qXY">
                                                     <rect key="frame" x="10" y="15" width="67" height="15"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
@@ -210,9 +210,9 @@
                         </connections>
                     </tableView>
                     <connections>
-                        <outlet property="imageLabel" destination="Y16-Jx-L9Z" id="bvo-YE-rp3"/>
+                        <outlet property="imageLabel" destination="Vym-nj-8bI" id="Q7H-c4-LfX"/>
                         <outlet property="nameLabel" destination="sc2-EA-Ter" id="PCT-KX-MYT"/>
-                        <outlet property="regionLabel" destination="Vym-nj-8bI" id="HbW-m9-RPK"/>
+                        <outlet property="regionLabel" destination="Y16-Jx-L9Z" id="Z8F-Wq-fyB"/>
                         <outlet property="sizeLabel" destination="1MC-Wo-SFu" id="aFX-t0-dVn"/>
                     </connections>
                 </tableViewController>
@@ -660,6 +660,47 @@
         <image name="tabbar_droplet.png" width="60" height="60"/>
         <image name="tabbar_setting.png" width="60" height="60"/>
     </resources>
+    <classes>
+        <class className="DRCreateDropletViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/DRCreateDropletViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="cancelButtonPressed:"/>
+                <relationship kind="outlet" name="imageLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="nameLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="regionLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="sizeLabel" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="DRDropletDetailViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/DRDropletDetailViewController.h"/>
+        </class>
+        <class className="DRDropletListViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/DRDropletListViewController.h"/>
+        </class>
+        <class className="DRLoginViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/DRLoginViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="apiKeyTextField" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="clientIDTextField" candidateClass="UITextField"/>
+            </relationships>
+        </class>
+        <class className="DROAuthViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/DROAuthViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="copyButtonPressed:"/>
+                <relationship kind="outlet" name="webView" candidateClass="UIWebView"/>
+            </relationships>
+        </class>
+        <class className="DRSelectionViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/DRSelectionViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="saveButtonPressed:"/>
+            </relationships>
+        </class>
+        <class className="DRSettingsViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/DRSettingsViewController.h"/>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

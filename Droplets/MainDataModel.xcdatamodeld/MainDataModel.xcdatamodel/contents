@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model name="" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="2061" systemVersion="12D78" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
+    <entity name="DRImage" representedClassName="DRImage" syncable="YES">
+        <attribute name="distribution" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="imageID" attributeType="Integer 32" defaultValueString="0" indexed="YES" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="type" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+    </entity>
+    <entity name="DRRegion" representedClassName="DRRegion" syncable="YES">
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="regionID" attributeType="Integer 32" defaultValueString="0" indexed="YES" syncable="YES"/>
+    </entity>
+    <entity name="DRSize" representedClassName="DRSize" syncable="YES">
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="size" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="sizeID" attributeType="Integer 32" defaultValueString="0" indexed="YES" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="DRImage" positionX="160" positionY="192" width="128" height="105"/>
+        <element name="DRRegion" positionX="160" positionY="192" width="128" height="75"/>
+        <element name="DRSize" positionX="160" positionY="192" width="128" height="90"/>
+    </elements>
+</model>

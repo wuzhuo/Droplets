@@ -66,8 +66,12 @@
 - (void)requestAllSizesSuccess:(void(^)())success
                        failure:(void(^)(NSString *message))failure
 {
+    NSDictionary *paramDict = @{
+                                @"client_id": [DRPreferences clientID],
+                                @"api_key": [DRPreferences APIKey]
+                                };
     [_httpClient getPath:@"sizes/"
-              parameters:@{@"client_id": [DRPreferences clientID], @"api_key": [DRPreferences APIKey]}
+              parameters:paramDict
                  success:^(AFHTTPRequestOperation *operation, id responseObject) {
                      
                      id jsonObject = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingAllowFragments error:nil];
@@ -75,7 +79,12 @@
                      NSArray *result = jsonObject[@"sizes"];
                      
                      if (result) {
-                         [[DRModelManager sharedInstance] processSizeData:result];
+                         [DRSize deleteAllObjects];
+                         for (NSDictionary *dict in result) {
+                             DRSize *size = [DRSize object];
+                             [size setValuesForKeysWithDictionary:dict];
+                         }
+                         [[DRObjectStore sharedInstance] save];
                          if (success) success();
                      } else {
                          [DRPreferences resetLoginKey];
@@ -115,11 +124,61 @@
                  }];
 }
 
+- (void)requestAllImagesType:(DRImageType)imageType
+                   onSuccess:(void(^)())success
+                     failure:(void(^)(NSString *message))failure
+{
+    NSDictionary *paramDict;
+    if (imageType == DRImageTypeGlobal) {
+        paramDict = @{
+                      @"client_id": [DRPreferences clientID],
+                      @"api_key": [DRPreferences APIKey],
+                      @"filter": @"global"
+                      };
+    } else if (imageType == DRImageTypeMy) {
+        paramDict = @{
+                      @"client_id": [DRPreferences clientID],
+                      @"api_key": [DRPreferences APIKey],
+                      @"filter": @"my_images"
+                      };
+    }
+    [_httpClient getPath:@"images/"
+              parameters:paramDict
+                 success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                     
+                     id jsonObject = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingAllowFragments error:nil];
+                     NSLog(@"%@", jsonObject);
+                     NSArray *result = jsonObject[@"images"];
+                     
+                     if (result) {
+                         for (NSDictionary *dict in result) {
+                             DRImage *image = [DRImage object];
+                             [image setValuesForKeysWithDictionary:dict];
+                             image.type = @(imageType);
+                         }
+                         [[DRObjectStore sharedInstance] save];
+                         if (success) success();
+                     } else {
+                         [DRPreferences resetLoginKey];
+                         if (failure) failure(@"Invaild User!");
+                     }
+                     
+                 }
+                 failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                     NSLog(@"error");
+                     if (failure) failure(error.localizedDescription);
+                 }];
+}
+
 - (void)requestAllRegionsSuccess:(void(^)())success
                          failure:(void(^)(NSString *message))failure
 {
+    NSDictionary *paramDict = @{
+                                @"client_id": [DRPreferences clientID],
+                                @"api_key": [DRPreferences APIKey]
+                                };
     [_httpClient getPath:@"regions/"
-              parameters:@{@"client_id": [DRPreferences clientID], @"api_key": [DRPreferences APIKey]}
+              parameters:paramDict
                  success:^(AFHTTPRequestOperation *operation, id responseObject) {
                      
                      id jsonObject = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingAllowFragments error:nil];
@@ -127,7 +186,12 @@
                      NSArray *result = jsonObject[@"regions"];
                      
                      if (result) {
-                         [[DRModelManager sharedInstance] processRegionData:result];
+                         [DRRegion deleteAllObjects];
+                         for (NSDictionary *dict in result) {
+                             DRRegion *region = [DRRegion object];
+                             [region setValuesForKeysWithDictionary:dict];
+                         }
+                         [[DRObjectStore sharedInstance] save];
                          if (success) success();
                      } else {
                          [DRPreferences resetLoginKey];

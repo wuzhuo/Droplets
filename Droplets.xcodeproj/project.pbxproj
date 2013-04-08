@@ -31,6 +31,14 @@
 		AE7C17D116E15BCC007A30A3 /* DRCreateDropletViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AE7C17D016E15BCC007A30A3 /* DRCreateDropletViewController.m */; };
 		AE7C17D416E15E55007A30A3 /* DROAuthViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AE7C17D316E15E55007A30A3 /* DROAuthViewController.m */; };
 		AE7C17DA16E15F25007A30A3 /* DRSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AE7C17D916E15F23007A30A3 /* DRSettingsViewController.m */; };
+		AE7C75841703BB1E00636218 /* MainDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = AE7C75821703BB1E00636218 /* MainDataModel.xcdatamodeld */; };
+		AE7C75871703BCC100636218 /* NSManagedObject+Extend.m in Sources */ = {isa = PBXBuildFile; fileRef = AE7C75861703BCC100636218 /* NSManagedObject+Extend.m */; };
+		AE7C75891703BD2D00636218 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AE7C75881703BD2D00636218 /* CoreData.framework */; };
+		AE7C758C1703BD7B00636218 /* DRSize.m in Sources */ = {isa = PBXBuildFile; fileRef = AE7C758B1703BD7B00636218 /* DRSize.m */; };
+		AE7C758F1703BD7B00636218 /* DRRegion.m in Sources */ = {isa = PBXBuildFile; fileRef = AE7C758E1703BD7B00636218 /* DRRegion.m */; };
+		AE7C75921703BD7B00636218 /* DRImage.m in Sources */ = {isa = PBXBuildFile; fileRef = AE7C75911703BD7B00636218 /* DRImage.m */; };
+		AE7C75981703C97E00636218 /* DRObjectStore.m in Sources */ = {isa = PBXBuildFile; fileRef = AE7C75971703C97D00636218 /* DRObjectStore.m */; };
+		AE7C759B1703CA2400636218 /* NSFileManager+Document.m in Sources */ = {isa = PBXBuildFile; fileRef = AE7C759A1703CA2400636218 /* NSFileManager+Document.m */; };
 		AEDF47D116E0EA5A00CA919E /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AEDF47D016E0EA5A00CA919E /* UIKit.framework */; };
 		AEDF47D316E0EA5A00CA919E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AEDF47D216E0EA5A00CA919E /* Foundation.framework */; };
 		AEDF47D516E0EA5A00CA919E /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AEDF47D416E0EA5A00CA919E /* CoreGraphics.framework */; };
@@ -86,6 +94,20 @@
 		AE7C17D316E15E55007A30A3 /* DROAuthViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DROAuthViewController.m; sourceTree = "<group>"; };
 		AE7C17D816E15F22007A30A3 /* DRSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DRSettingsViewController.h; sourceTree = "<group>"; };
 		AE7C17D916E15F23007A30A3 /* DRSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DRSettingsViewController.m; sourceTree = "<group>"; };
+		AE7C75831703BB1E00636218 /* MainDataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MainDataModel.xcdatamodel; sourceTree = "<group>"; };
+		AE7C75851703BCC100636218 /* NSManagedObject+Extend.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSManagedObject+Extend.h"; sourceTree = "<group>"; };
+		AE7C75861703BCC100636218 /* NSManagedObject+Extend.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSManagedObject+Extend.m"; sourceTree = "<group>"; };
+		AE7C75881703BD2D00636218 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		AE7C758A1703BD7B00636218 /* DRSize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DRSize.h; sourceTree = "<group>"; };
+		AE7C758B1703BD7B00636218 /* DRSize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DRSize.m; sourceTree = "<group>"; };
+		AE7C758D1703BD7B00636218 /* DRRegion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DRRegion.h; sourceTree = "<group>"; };
+		AE7C758E1703BD7B00636218 /* DRRegion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DRRegion.m; sourceTree = "<group>"; };
+		AE7C75901703BD7B00636218 /* DRImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DRImage.h; sourceTree = "<group>"; };
+		AE7C75911703BD7B00636218 /* DRImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DRImage.m; sourceTree = "<group>"; };
+		AE7C75961703C97D00636218 /* DRObjectStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DRObjectStore.h; sourceTree = "<group>"; };
+		AE7C75971703C97D00636218 /* DRObjectStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DRObjectStore.m; sourceTree = "<group>"; };
+		AE7C75991703CA2300636218 /* NSFileManager+Document.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSFileManager+Document.h"; sourceTree = "<group>"; };
+		AE7C759A1703CA2400636218 /* NSFileManager+Document.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSFileManager+Document.m"; sourceTree = "<group>"; };
 		AEDF47CD16E0EA5A00CA919E /* Droplets.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Droplets.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AEDF47D016E0EA5A00CA919E /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		AEDF47D216E0EA5A00CA919E /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -124,6 +146,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AE7C75891703BD2D00636218 /* CoreData.framework in Frameworks */,
 				AEF5B3DF16E40D5A005AD706 /* QuartzCore.framework in Frameworks */,
 				AEDF483716E1054B00CA919E /* MobileCoreServices.framework in Frameworks */,
 				AEDF483616E1054400CA919E /* SystemConfiguration.framework in Frameworks */,
@@ -149,8 +172,16 @@
 		AE7C17B416E1089B007A30A3 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				AE7C75901703BD7B00636218 /* DRImage.h */,
+				AE7C75911703BD7B00636218 /* DRImage.m */,
 				AE1A82D916E269BE0018FF2F /* DRModelManager.h */,
 				AE1A82DA16E269BE0018FF2F /* DRModelManager.m */,
+				AE7C758D1703BD7B00636218 /* DRRegion.h */,
+				AE7C758E1703BD7B00636218 /* DRRegion.m */,
+				AE7C758A1703BD7B00636218 /* DRSize.h */,
+				AE7C758B1703BD7B00636218 /* DRSize.m */,
+				AE7C75961703C97D00636218 /* DRObjectStore.h */,
+				AE7C75971703C97D00636218 /* DRObjectStore.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -176,6 +207,7 @@
 		AEDF47CF16E0EA5A00CA919E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				AE7C75881703BD2D00636218 /* CoreData.framework */,
 				AEF5B3DE16E40D5A005AD706 /* QuartzCore.framework */,
 				AEDF483016E102B000CA919E /* MobileCoreServices.framework */,
 				AEDF482E16E102A200CA919E /* SystemConfiguration.framework */,
@@ -215,6 +247,7 @@
 			isa = PBXGroup;
 			children = (
 				AEDF47E816E0EA5A00CA919E /* MainStoryboard.storyboard */,
+				AE7C75821703BB1E00636218 /* MainDataModel.xcdatamodeld */,
 			);
 			name = Bundle;
 			sourceTree = "<group>";
@@ -302,6 +335,10 @@
 		AEDF482616E0FF9900CA919E /* Categories */ = {
 			isa = PBXGroup;
 			children = (
+				AE7C75991703CA2300636218 /* NSFileManager+Document.h */,
+				AE7C759A1703CA2400636218 /* NSFileManager+Document.m */,
+				AE7C75851703BCC100636218 /* NSManagedObject+Extend.h */,
+				AE7C75861703BCC100636218 /* NSManagedObject+Extend.m */,
 				AEDF482716E0FFC200CA919E /* NSString+Extend.h */,
 				AEDF482816E0FFC200CA919E /* NSString+Extend.m */,
 				AEF5B3E016E41C16005AD706 /* UIAlertView+Custom.h */,
@@ -427,6 +464,13 @@
 				AE1A82EE16E2ACCF0018FF2F /* UIView+Frame.m in Sources */,
 				AEF5B3DD16E3F724005AD706 /* DRSelectionViewController.m in Sources */,
 				AEF5B3E216E41C16005AD706 /* UIAlertView+Custom.m in Sources */,
+				AE7C75841703BB1E00636218 /* MainDataModel.xcdatamodeld in Sources */,
+				AE7C75871703BCC100636218 /* NSManagedObject+Extend.m in Sources */,
+				AE7C758C1703BD7B00636218 /* DRSize.m in Sources */,
+				AE7C758F1703BD7B00636218 /* DRRegion.m in Sources */,
+				AE7C75921703BD7B00636218 /* DRImage.m in Sources */,
+				AE7C75981703C97E00636218 /* DRObjectStore.m in Sources */,
+				AE7C759B1703CA2400636218 /* NSFileManager+Document.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -556,6 +600,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		AE7C75821703BB1E00636218 /* MainDataModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				AE7C75831703BB1E00636218 /* MainDataModel.xcdatamodel */,
+			);
+			currentVersion = AE7C75831703BB1E00636218 /* MainDataModel.xcdatamodel */;
+			path = MainDataModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = AEDF47C516E0EA5A00CA919E /* Project object */;
 }
